@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "@nuxtjs/eslint-config-typescript"
+  ],
+  "rules": {
+    "no-console": "off",
+    "import/no-named-as-default-member": "off",
+    "vue/no-v-html": "warn",
+    "vue/no-multiple-template-root": "off",
+    "require-await": "off",
+    "vue/no-mutating-props": "off",
+    "no-new": "off",
+    "vue/multi-word-component-names": "off",
+    "camelcase": "off"
+  }
+}
