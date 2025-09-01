@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    @apply w-full h-screen;
+
+    #__nuxt {
+        @apply h-full;
+    }
+}

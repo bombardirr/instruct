@@ -1,23 +1,19 @@
 <template>
   <div class="container">
-    <div>re</div>
-    <div>re</div>
-    <div>re</div>
+    <AgConsole/>
   </div>
 </template>
 
 <script setup>
-
+import AgConsole from "~/components/ag-console.vue";
 </script>
 
 <style>
 @import 'tailwindcss';
 
 .container {
+  @apply relative;
   @apply flex flex-col items-center justify-center;
-
-  div:nth-child(1) {
-    @apply bg-green-300;
-  }
+  @apply h-full;
 }
 </style>
