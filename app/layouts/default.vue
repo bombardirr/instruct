@@ -1,14 +1,14 @@
 <script setup>
 import AgFooter from "~/components/ag-footer.vue";
 import AgHeader from "~/components/ag-header.vue";
-import LeftBar from "~/components/LeftBar.vue";
+// import LeftBar from "~/components/LeftBar.vue";
 </script>
 
 <template>
   <div class="default-layout">
     <AgHeader/>
     <main>
-      <LeftBar/>
+<!--      <LeftBar/>-->
       <slot/>
     </main>
     <AgFooter/>
