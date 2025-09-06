@@ -25,7 +25,7 @@ onMounted(() => {
       value: props.str,
       delimiter: "",
     },
-    duration: 2,
+    duration: 8,
     ease: "none",
   });
 });
@@ -42,6 +42,7 @@ onMounted(() => {
 @import "tailwindcss";
 
 .console {
+  @apply font-mono;
   @apply absolute bottom-2 left-2;
   @apply w-[40%] max-w-[500px] aspect-video;
   @apply p-4;
