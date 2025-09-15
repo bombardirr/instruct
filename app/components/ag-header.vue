@@ -10,5 +10,6 @@
 
 header {
   @apply flex justify-start items-center gap-2;
+  @apply bg-[var(--ag-green-primary)];
 }
 </style>

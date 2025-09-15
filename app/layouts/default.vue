@@ -6,12 +6,14 @@ import AgHeader from "~/components/ag-header.vue";
 
 <template>
   <div class="default-layout">
+    <div class="default-layout__wrapper">
     <AgHeader/>
     <main>
 <!--      <LeftBar/>-->
       <slot/>
     </main>
     <AgFooter/>
+    </div>
   </div>
 </template>
 
@@ -19,15 +21,21 @@ import AgHeader from "~/components/ag-header.vue";
 @import "tailwindcss";
 
 .default-layout {
-  @apply flex flex-col justify-between items-center;
-  @apply h-full;
+  @apply relative;
+  @apply w-full min-h-screen;
 
-  main {
+  .default-layout__wrapper {
     @apply relative;
-    @apply flex justify-start items-center gap-0;
-    @apply flex-1;
-    @apply w-full;
-    @apply bg-gray-500;
+    @apply flex flex-col justify-between;
+    @apply max-w-[1920px] min-h-screen mx-auto;
+
+    main {
+      @apply relative;
+      @apply flex-1;
+      @apply flex justify-center items-center;
+      @apply p-8;
+      @apply bg-[var(--ag-green-primary)];
+    }
   }
 }
 </style>

@@ -1,13 +1,19 @@
 @import "tailwindcss";
 
+:root {
+    --ag-green-primary: rgba(20, 27, 35, 1);
+    --ag-green-light: rgba(91, 161, 153, 1);
+
+    --ag-blue-primary: rgba(20, 27, 44, 1);
+
+    --ag-gray-primary: #1e2939;
+}
+
 * {
     box-sizing: border-box;
 }
 
-body {
-    @apply w-full h-screen;
-
-    #__nuxt {
-        @apply h-full;
-    }
+html, body {
+    @apply m-0 p-0;
+    @apply bg-[var(--ag-green-primary)];
 }

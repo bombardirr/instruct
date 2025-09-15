@@ -42,12 +42,12 @@ onMounted(() => {
 @import "tailwindcss";
 
 .console {
-  @apply font-mono;
-  @apply absolute bottom-2 left-2;
+  @apply absolute bottom-2 left-16;
   @apply w-[40%] max-w-[500px] aspect-video;
   @apply p-4;
-  @apply bg-black;
+  @apply font-mono;
   @apply text-green-500;
+  @apply bg-black;
   @apply rounded-2xl;
 
   div {

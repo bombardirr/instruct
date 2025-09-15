@@ -3,8 +3,8 @@ import AgConsole from "~/components/ag-console.vue";
 </script>
 
 <template>
-  <div class="container">
-    <div>Hello</div>
+  <div class="home-container">
+    <LeftBar/>
     <AgConsole />
   </div>
 </template>
@@ -12,9 +12,11 @@ import AgConsole from "~/components/ag-console.vue";
 <style>
 @import "tailwindcss";
 
-.container {
+.home-container {
   @apply relative;
-  @apply flex flex-col items-center justify-center;
-  @apply h-full;
+  @apply flex-1;
+  @apply bg-[var(--ag-green-primary)];
+  @apply [clip-path:polygon(20px_0,_calc(100%_-_20px)_0,_100%_20px,_100%_calc(100%_-_20px),_calc(100%_-_20px)_100%,_20px_100%,_0_calc(100%_-_20px),_0_20px)];
+  height: -webkit-fill-available;
 }
 </style>
