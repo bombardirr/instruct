@@ -33,7 +33,7 @@
 .left-bar {
   @apply relative;
   @apply flex flex-col justify-start items-start gap-2;
-  @apply w-fit h-full;
+  @apply w-fit max-w-[300px] h-full;
   @apply pt-2 pl-12;
 
   .left-bar__borderA {
