@@ -1,31 +1,51 @@
 <script setup>
-const isMenuItemClicked = ref(false);
+import SidebarItem from './SidebarItem.vue'
+
+const isMenuItemClicked = ref(false)
+
+const menuItems = [
+  {
+    id: 'ssh',
+    icon: 'material-icon-theme:cds',
+    text: 'SSH',
+    moreText: 'GIT',
+    moreIcon: 'line-md:uploading-loop'
+  },
+  {
+    id: 'ide',
+    icon: 'material-icon-theme:purescript',
+    text: 'IDE',
+    moreText: 'REMOTE',
+    moreIcon: 'line-md:uploading-loop'
+  }
+]
+
+const handleItemClick = (item) => {
+  console.log('Clicked item:', item)
+  // Здесь можно добавить логику обработки клика
+}
+
+const handleMoreClick = (item) => {
+  console.log('Clicked more for item:', item)
+  // Здесь можно добавить логику обработки клика на дополнительную опцию
+}
 </script>
 
 <template>
   <aside class="left-bar">
     <div class="left-bar__container">
       <div class="left-bar__borderA"/>
-      <div class="left-bar__item">
-        <div class="icn">
-          <Icon name="material-icon-theme:cds"/>
-        </div>
-        <span class="text">SSH</span>
-        <div class="icn-more">
-          <Icon name="line-md:uploading-loop"/>
-        </div>
-        <span class="text">GIT</span>
-      </div>
-      <div class="left-bar__item">
-        <div class="icn">
-          <Icon name="material-icon-theme:purescript"/>
-        </div>
-        <span class="text">IDE</span>
-        <div class="icn-more">
-          <Icon name="line-md:uploading-loop"/>
-        </div>
-        <span class="text">REMOTE</span>
-      </div>
+      <SidebarItem
+        v-for="item in menuItems"
+        :key="item.id"
+        :icon="item.icon"
+        :text="item.text"
+        :more-text="item.moreText"
+        :more-icon="item.moreIcon"
+        :is-active="isMenuItemClicked"
+        @click="handleItemClick(item)"
+        @more-click="handleMoreClick(item)"
+      />
     </div>
   </aside>
 </template>
@@ -48,51 +68,6 @@ const isMenuItemClicked = ref(false);
       @apply w-8 h-full;
       @apply bg-[var(--ag-gray-primary)];
     }
-
-    .left-bar__item {
-      @apply flex justify-start items-center gap-2;
-      @apply cursor-pointer;
-      @apply transition-all duration-300;
-      @apply transform translate-x-0;
-    }
-
-    .left-bar__item:hover {
-      @apply translate-x-2;
-
-      .icn-more {
-        @apply flex justify-center items-center;
-      }
-    }
-
-    .icn {
-      @apply flex justify-center items-center;
-      @apply w-10 h-10;
-      @apply p-1;
-      @apply transition-all duration-300;
-
-      .iconify {
-        @apply w-full h-full;
-      }
-    }
-
-    .icn-more {
-      @apply hidden;
-      @apply w-6 h-6;
-      @apply text-amber-50;
-      @apply p-1;
-      @apply cursor-pointer;
-      @apply rotate-90;
-
-      .iconify {
-        @apply w-full h-full;
-      }
-    }
-
-    .text {
-      @apply text-amber-100;
-    }
   }
-
-
 }
 </style>

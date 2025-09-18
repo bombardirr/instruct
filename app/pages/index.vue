@@ -1,11 +1,14 @@
 <script setup>
 import Sidebar from "~/components/layout/Sidebar/Sidebar.vue";
+import Description from "~/components/features/Description/Description.vue";
 </script>
 
 <template>
   <div class="home-container">
     <Sidebar/>
-    <div class="home-container__content"/>
+    <div class="home-container__content">
+      <Description/>
+    </div>
   </div>
 </template>
 

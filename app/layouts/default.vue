@@ -1,7 +1,6 @@
 <script setup>
 import Header from "~/components/layout/Header/Header.vue";
 import Footer from "~/components/layout/Footer/Footer.vue";
-// import LeftBar from "~/components/LeftBar.vue";
 </script>
 
 <template>
@@ -9,7 +8,6 @@ import Footer from "~/components/layout/Footer/Footer.vue";
     <div class="default-layout__wrapper">
     <Header/>
     <main>
-<!--      <LeftBar/>-->
       <slot/>
     </main>
     <Footer/>
