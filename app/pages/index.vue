@@ -6,7 +6,7 @@ import AgConsole from "~/components/ag-console.vue";
   <div class="home-container">
     <LeftBar/>
     <div class="home-container__content"/>
-<!--    <AgConsole />-->
+    <!--    <AgConsole />-->
   </div>
 </template>
 
@@ -23,6 +23,7 @@ import AgConsole from "~/components/ag-console.vue";
 
   .home-container__content {
     @apply w-full h-full;
+    @apply ml-[300px];
     @apply bg-cyan-900;
   }
 }
