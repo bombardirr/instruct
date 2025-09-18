@@ -1,12 +1,11 @@
 <script setup>
-import AgConsole from "~/components/ag-console.vue";
+import Sidebar from "~/components/layout/Sidebar/Sidebar.vue";
 </script>
 
 <template>
   <div class="home-container">
-    <LeftBar/>
+    <Sidebar/>
     <div class="home-container__content"/>
-    <!--    <AgConsole />-->
   </div>
 </template>
 

@@ -1,18 +1,18 @@
 <script setup>
-import AgFooter from "~/components/ag-footer.vue";
-import AgHeader from "~/components/ag-header.vue";
+import Header from "~/components/layout/Header/Header.vue";
+import Footer from "~/components/layout/Footer/Footer.vue";
 // import LeftBar from "~/components/LeftBar.vue";
 </script>
 
 <template>
   <div class="default-layout">
     <div class="default-layout__wrapper">
-    <AgHeader/>
+    <Header/>
     <main>
 <!--      <LeftBar/>-->
       <slot/>
     </main>
-    <AgFooter/>
+    <Footer/>
     </div>
   </div>
 </template>

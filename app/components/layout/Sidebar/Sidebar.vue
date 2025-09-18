@@ -1,4 +1,5 @@
 <script setup>
+const isMenuItemClicked = ref(false);
 </script>
 
 <template>
