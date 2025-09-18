@@ -1,27 +1,25 @@
 <template>
-  <div class="cyber-description">
+  <div :class="styles.description">
     <!-- Заголовок -->
-    <div class="cyber-header">
-      <div class="cyber-header__content">
-        <h1 class="cyber-title">НАСТРОЙКА SSH</h1>
-        <p class="cyber-subtitle">Безопасный доступ к репозиторию</p>
+    <div :class="styles.header">
+      <div :class="styles.header__content">
+        <h1 :class="styles.header__title">НАСТРОЙКА SSH</h1>
+        <p :class="styles.header__subtitle">Безопасный доступ к репозиторию</p>
       </div>
-      <div class="cyber-header__accent"></div>
+      <div :class="styles.header__accent"/>
     </div>
 
     <!-- Табы для ОС -->
-    <div class="os-tabs">
+    <div :class="styles.tabs">
       <button 
-        class="os-tab"
-        :class="{ 'os-tab--active': activeOS === 'linux' }"
+        :class="[styles.tabs__item, { [styles['tabs__item--active']]: activeOS === 'linux' }]"
         @click="activeOS = 'linux'"
       >
         <Icon name="simple-icons:linux" />
         LINUX
       </button>
       <button 
-        class="os-tab"
-        :class="{ 'os-tab--active': activeOS === 'windows' }"
+        :class="[styles.tabs__item, { [styles['tabs__item--active']]: activeOS === 'windows' }]"
         @click="activeOS = 'windows'"
       >
         <Icon name="simple-icons:windows" />
@@ -30,147 +28,161 @@
     </div>
 
     <!-- Настройки пользователя -->
-    <div class="user-settings">
-      <h3 class="user-settings__title">НАСТРОЙКИ</h3>
-      <div class="user-settings__grid">
-        <div class="user-settings__item">
-          <label class="user-settings__label">Имя пользователя (Windows)</label>
+    <div :class="styles.settings">
+      <div :class="styles.settings__header">
+        <h3 :class="styles.settings__title">НАСТРОЙКИ</h3>
+        <div :class="styles.settings__disclaimer">
+          <p>
+            <span>Чтобы финальный код подстроить под вас </span>
+            <span :class="styles.smiley" data-smiley="(◕‿◕)">(◕‿◕)</span>
+          </p>
+        </div>
+      </div>
+      <div :class="styles.settings__grid">
+        <div :class="styles.settings__item">
+          <label :class="styles.settings__label" for="username">Имя пользователя (Windows)</label>
           <input 
+            id="username"
             v-model="username"
-            class="user-settings__input"
+            :class="styles.settings__input"
             placeholder="Ваше имя пользователя"
             type="text"
-          />
+            autocomplete="username"
+          >
         </div>
-        <div class="user-settings__item">
-          <label class="user-settings__label">Имя ключа</label>
+        <div :class="styles.settings__item">
+          <label :class="styles.settings__label" for="keyName">Имя ключа</label>
           <input 
+            id="keyName"
             v-model="keyName"
-            class="user-settings__input"
+            :class="styles.settings__input"
             placeholder="id_rsa_tar"
             type="text"
-          />
+            autocomplete="off"
+          >
         </div>
-        <div class="user-settings__item">
-          <label class="user-settings__label">Имя хоста</label>
+        <div :class="styles.settings__item">
+          <label :class="styles.settings__label" for="hostName">Имя хоста</label>
           <input 
+            id="hostName"
             v-model="hostName"
-            class="user-settings__input"
+            :class="styles.settings__input"
             placeholder="Tar_Git"
             type="text"
-          />
+            autocomplete="off"
+          >
         </div>
       </div>
     </div>
 
     <!-- Контент -->
-    <div class="cyber-content">
+    <div :class="styles.content">
       <!-- Шаг 1: Создание SSH ключей -->
-      <div class="cyber-step">
-        <div class="cyber-step__header">
-          <div class="cyber-step__number">01</div>
-          <h3 class="cyber-step__title">СОЗДАНИЕ SSH КЛЮЧЕЙ</h3>
+      <div :class="styles.step">
+        <div :class="styles.step__header">
+          <div :class="styles.step__number" data-number="01">01</div>
+          <h3 :class="styles.step__title">СОЗДАНИЕ SSH КЛЮЧЕЙ</h3>
         </div>
-        <div class="cyber-step__body">
-          <div class="cyber-command">
-            <div class="cyber-command__header">
-              <span class="cyber-command__label">ВЫПОЛНИТЬ</span>
+        <div :class="styles.step__body">
+          <div :class="styles.command">
+            <div :class="styles.command__header">
+              <span :class="styles.command__label">ВЫПОЛНИТЬ</span>
               <button 
-                class="cyber-button cyber-button--copy"
+                :class="[styles.button, styles['button--copy']]"
                 @click="copyCommand('ssh-keygen')"
               >
                 <Icon name="material-symbols:content-copy" />
               </button>
             </div>
-            <div class="cyber-command__code">
-              <code>ssh-keygen</code>
+            <div :class="styles.command__code">
+              <code>{{ getDisplayText('ssh-keygen') }}</code>
             </div>
           </div>
-          <div class="cyber-instructions">
-            <p>Введите имя файла: <span class="cyber-code">id_rsa_tar</span></p>
+          <div :class="styles.instructions">
+            <p>Введите имя файла: <span :class="styles.code">id_rsa_tar</span></p>
             <p>Нажмите Enter для пустого пароля</p>
           </div>
         </div>
       </div>
 
       <!-- Шаг 2: Настройка SSH конфига -->
-      <div class="cyber-step">
-        <div class="cyber-step__header">
-          <div class="cyber-step__number">02</div>
-          <h3 class="cyber-step__title">НАСТРОЙКА SSH КОНФИГА</h3>
+      <div :class="styles.step">
+        <div :class="styles.step__header">
+          <div :class="styles.step__number" data-number="02">02</div>
+          <h3 :class="styles.step__title">НАСТРОЙКА SSH КОНФИГА</h3>
         </div>
-        <div class="cyber-step__body">
-          <div class="cyber-command">
-            <div class="cyber-command__header">
-              <span class="cyber-command__label">СОЗДАТЬ ФАЙЛ</span>
+        <div :class="styles.step__body">
+          <div :class="styles.command">
+            <div :class="styles.command__header">
+              <span :class="styles.command__label">СОЗДАТЬ ФАЙЛ</span>
               <button 
-                class="cyber-button cyber-button--copy"
+                :class="[styles.button, styles['button--copy']]"
                 @click="copyCommand(getConfigCommand())"
               >
                 <Icon name="material-symbols:content-copy" />
               </button>
             </div>
-            <div class="cyber-command__code">
-              <code>{{ getConfigCommand() }}</code>
+            <div :class="styles.command__code">
+              <code>{{ getDisplayText(getConfigCommand()) }}</code>
             </div>
           </div>
-          <div class="cyber-instructions">
+          <div :class="styles.instructions">
             <p>Добавьте эту конфигурацию в файл:</p>
-            <div class="cyber-config-block">
+            <div :class="styles.config">
               <pre><code>{{ getConfigContent() }}</code></pre>
             </div>
             <p><strong>Настройка:</strong></p>
-            <ul class="cyber-config-list">
-              <li><span class="cyber-code">Host</span> - выберите любое имя (например, "МойГит", "Работа")</li>
-              <li><span class="cyber-code">IdentityFile</span> - путь к вашему приватному ключу</li>
-              <li>Сохраните файл и проверьте: <span class="cyber-code">ssh -T Tar_Git</span></li>
+            <ul :class="styles.config__list">
+              <li><span :class="styles.code">Host</span> - выберите любое имя (например, "МойГит", "Работа")</li>
+              <li><span :class="styles.code">IdentityFile</span> - путь к вашему приватному ключу</li>
+              <li>Сохраните файл и проверьте: <span :class="styles.code">ssh -T Tar_Git</span></li>
             </ul>
           </div>
         </div>
       </div>
 
       <!-- Шаг 3: Копирование ключа -->
-      <div class="cyber-step">
-        <div class="cyber-step__header">
-          <div class="cyber-step__number">03</div>
-          <h3 class="cyber-step__title">ИЗВЛЕЧЕНИЕ ПУБЛИЧНОГО КЛЮЧА</h3>
+      <div :class="styles.step">
+        <div :class="styles.step__header">
+          <div :class="styles.step__number" data-number="03">03</div>
+          <h3 :class="styles.step__title">ИЗВЛЕЧЕНИЕ ПУБЛИЧНОГО КЛЮЧА</h3>
         </div>
-        <div class="cyber-step__body">
-          <div class="cyber-command">
-            <div class="cyber-command__header">
-              <span class="cyber-command__label">ВЫПОЛНИТЬ</span>
+        <div :class="styles.step__body">
+          <div :class="styles.command">
+            <div :class="styles.command__header">
+              <span :class="styles.command__label">ВЫПОЛНИТЬ</span>
               <button 
-                class="cyber-button cyber-button--copy"
+                :class="[styles.button, styles['button--copy']]"
                 @click="copyCommand(getCopyCommand())"
               >
                 <Icon name="material-symbols:content-copy" />
               </button>
             </div>
-            <div class="cyber-command__code">
-              <code>{{ getCopyCommand() }}</code>
+            <div :class="styles.command__code">
+              <code>{{ getDisplayText(getCopyCommand()) }}</code>
             </div>
           </div>
-          <div class="cyber-instructions">
-            <p>Скопируйте весь вывод от <span class="cyber-code">ssh-rsa</span> до конца</p>
+          <div :class="styles.instructions">
+            <p>Скопируйте весь вывод от <span :class="styles.code">ssh-rsa</span> до конца</p>
           </div>
         </div>
       </div>
 
       <!-- Шаг 4: Добавление в Gogs -->
-      <div class="cyber-step">
-        <div class="cyber-step__header">
-          <div class="cyber-step__number">04</div>
-          <h3 class="cyber-step__title">ДОБАВЛЕНИЕ В GOGS</h3>
+      <div :class="styles.step">
+        <div :class="styles.step__header">
+          <div :class="styles.step__number" data-number="04">04</div>
+          <h3 :class="styles.step__title">ДОБАВЛЕНИЕ В GOGS</h3>
         </div>
-        <div class="cyber-step__body">
+        <div :class="styles.step__body">
           <button 
-            class="cyber-button cyber-button--primary"
+            :class="[styles.button, styles['button--primary']]"
             @click="openGogs"
           >
             <Icon name="material-symbols:open-in-new" />
             ОТКРЫТЬ GOGS
           </button>
-          <div class="cyber-instructions">
+          <div :class="styles.instructions">
             <p>1. Перейдите в <strong>Настройки</strong> → <strong>SSH Keys</strong></p>
             <p>2. Нажмите <strong>Добавить ключ</strong></p>
             <p>3. Вставьте скопированный ключ</p>
@@ -179,83 +191,83 @@
       </div>
 
       <!-- Шаг 5: Проверка -->
-      <div class="cyber-step">
-        <div class="cyber-step__header">
-          <div class="cyber-step__number">05</div>
-          <h3 class="cyber-step__title">ПРОВЕРКА ПОДКЛЮЧЕНИЯ</h3>
+      <div :class="styles.step">
+        <div :class="styles.step__header">
+          <div :class="styles.step__number" data-number="05">05</div>
+          <h3 :class="styles.step__title">ПРОВЕРКА ПОДКЛЮЧЕНИЯ</h3>
         </div>
-        <div class="cyber-step__body">
-          <div class="cyber-command">
-            <div class="cyber-command__header">
-              <span class="cyber-command__label">ВЫПОЛНИТЬ</span>
+        <div :class="styles.step__body">
+          <div :class="styles.command">
+            <div :class="styles.command__header">
+              <span :class="styles.command__label">ВЫПОЛНИТЬ</span>
               <button 
-                class="cyber-button cyber-button--copy"
+                :class="[styles.button, styles['button--copy']]"
                 @click="copyCommand('ssh -T git@git.rosatomtech.ru -p 10022')"
               >
                 <Icon name="material-symbols:content-copy" />
               </button>
             </div>
-            <div class="cyber-command__code">
-              <code>ssh -T git@git.rosatomtech.ru -p 10022</code>
+            <div :class="styles.command__code">
+              <code>{{ getDisplayText('ssh -T git@git.rosatomtech.ru -p 10022') }}</code>
             </div>
           </div>
-          <div class="cyber-instructions">
-            <p>Ожидаемый результат: <span class="cyber-code">Hi there, You've successfully authenticated...</span></p>
+          <div :class="styles.instructions">
+            <p>Ожидаемый результат: <span :class="styles.code">Hi there, You've successfully authenticated...</span></p>
           </div>
         </div>
       </div>
 
       <!-- Шаг 6: Переключение -->
-      <div class="cyber-step">
-        <div class="cyber-step__header">
-          <div class="cyber-step__number">06</div>
-          <h3 class="cyber-step__title">ПЕРЕКЛЮЧЕНИЕ НА SSH</h3>
+      <div :class="styles.step">
+        <div :class="styles.step__header">
+          <div :class="styles.step__number" data-number="06">06</div>
+          <h3 :class="styles.step__title">ПЕРЕКЛЮЧЕНИЕ НА SSH</h3>
         </div>
-        <div class="cyber-step__body">
-          <div class="cyber-command">
-            <div class="cyber-command__header">
-              <span class="cyber-command__label">ВЫПОЛНИТЬ</span>
+        <div :class="styles.step__body">
+          <div :class="styles.command">
+            <div :class="styles.command__header">
+              <span :class="styles.command__label">ВЫПОЛНИТЬ</span>
               <button 
-                class="cyber-button cyber-button--copy"
+                :class="[styles.button, styles['button--copy']]"
                 @click="copyCommand('git remote set-url origin git@git.rosatomtech.ru:username/repository.git')"
               >
                 <Icon name="material-symbols:content-copy" />
               </button>
             </div>
-            <div class="cyber-command__code">
-              <code>{{ getRemoteCommand() }}</code>
+            <div :class="styles.command__code">
+              <code>{{ getDisplayText(getRemoteCommand()) }}</code>
             </div>
           </div>
-          <div class="cyber-instructions">
-            <p>Замените <span class="cyber-code">username/repository</span> на ваш репозиторий</p>
-            <p>Затем выполните: <span class="cyber-code">git pull</span> и <span class="cyber-code">git push</span></p>
+          <div :class="styles.instructions">
+            <p>Замените <span :class="styles.code">username/repository</span> на ваш репозиторий</p>
+            <p>Затем выполните: <span :class="styles.code">git pull</span> и <span :class="styles.code">git push</span></p>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Дополнительная информация -->
-    <div class="cyber-footer">
+    <div :class="styles.footer">
       <button 
-        class="cyber-toggle"
+        :class="styles.footer__toggle"
         @click="toggleDetails"
       >
         <Icon :name="showDetails ? 'material-symbols:expand-less' : 'material-symbols:expand-more'" />
         {{ showDetails ? 'СКРЫТЬ' : 'ПОКАЗАТЬ' }} ДОПОЛНИТЕЛЬНО
       </button>
       
-      <div v-if="showDetails" class="cyber-advanced">
+      <div v-if="showDetails" :class="styles.footer__advanced">
         <h4>ДОПОЛНИТЕЛЬНЫЕ КОМАНДЫ</h4>
-        <div class="cyber-advanced__list">
-          <div class="cyber-advanced__item">
+        <div :class="styles.footer__advancedList">
+          <div :class="styles.footer__advancedItem">
             <code>ssh-add -l</code>
             <span>Список загруженных ключей</span>
           </div>
-          <div class="cyber-advanced__item">
+          <div :class="styles.footer__advancedItem">
             <code>ssh-add ~/.ssh/id_rsa_tar</code>
             <span>Добавить ключ в агент</span>
           </div>
-          <div class="cyber-advanced__item">
+          <div :class="styles.footer__advancedItem">
             <code>git remote -v</code>
             <span>Проверить текущий remote</span>
           </div>
@@ -263,9 +275,11 @@
       </div>
     </div>
   </div>
-</template>
+  </template>
 
 <script setup>
+import styles from './Description.module.css'
+
 const showDetails = ref(false)
 const activeOS = ref('linux')
 
@@ -274,13 +288,68 @@ const username = ref('')
 const keyName = ref('id_rsa_tar')
 const hostName = ref('Tar_Git')
 
+// Анимация копирования
+const isAnimating = ref(false)
+const animatedText = ref('')
+const currentCommand = ref('')
+
 const copyCommand = async (command) => {
+  if (isAnimating.value) return
+  
   try {
     await navigator.clipboard.writeText(command)
     console.log('Command copied:', command)
+    
+    // Запускаем анимацию
+    await animateCopy(command)
   } catch (err) {
     console.error('Copy error:', err)
   }
+}
+
+const animateCopy = async (command) => {
+  isAnimating.value = true
+  currentCommand.value = command
+  animatedText.value = command
+  
+  // Стираем текст по символам
+  for (let i = command.length; i >= 0; i--) {
+    animatedText.value = command.substring(0, i)
+    await new Promise(resolve => setTimeout(resolve, 25))
+  }
+  
+  // Печатаем "Скопировано"
+  const copyText = "Скопировано"
+  for (let i = 0; i <= copyText.length; i++) {
+    animatedText.value = copyText.substring(0, i)
+    await new Promise(resolve => setTimeout(resolve, 50))
+  }
+  
+  // Добавляем смайлик котика
+  await new Promise(resolve => setTimeout(resolve, 250))
+  animatedText.value = copyText + " ₍^. .^₎⟆"
+  
+  // Возвращаем исходный текст
+  await new Promise(resolve => setTimeout(resolve, 1000))
+  for (let i = copyText.length + 8; i >= 0; i--) {
+    animatedText.value = (copyText + " ₍^. .^₎⟆").substring(0, i)
+    await new Promise(resolve => setTimeout(resolve, 25))
+  }
+  
+  // Восстанавливаем исходную команду
+  for (let i = 0; i <= command.length; i++) {
+    animatedText.value = command.substring(0, i)
+    await new Promise(resolve => setTimeout(resolve, 25))
+  }
+  
+  isAnimating.value = false
+}
+
+const getDisplayText = (command) => {
+  if (isAnimating.value && currentCommand.value === command) {
+    return animatedText.value
+  }
+  return command
 }
 
 const getCopyCommand = () => {
@@ -328,332 +397,5 @@ const toggleDetails = () => {
 </script>
 
 <style>
-@import "tailwindcss";
-
-.cyber-description {
-  width: 100%;
-  height: 100%;
-  padding: 1.5rem;
-  overflow-y: auto;
-  background-color: var(--ag-black-tertiary);
-  color: var(--ag-white-primary);
-  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
-}
-
-/* Заголовок */
-.cyber-header {
-  @apply relative;
-  @apply mb-8;
-  @apply p-6;
-  @apply bg-[var(--ag-gray-primary)];
-  @apply border border-[var(--ag-gray-secondary)];
-  @apply [clip-path:polygon(0_0,calc(100%_-_20px)_0,100%_20px,100%_100%,20px_100%,0_calc(100%_-_20px))];
-  @apply overflow-hidden;
-}
-
-.cyber-header__content {
-  @apply relative z-10;
-}
-
-.cyber-title {
-  @apply text-4xl font-bold;
-  @apply text-[var(--ag-white-primary)];
-  @apply mb-2;
-  @apply tracking-wider;
-}
-
-.cyber-subtitle {
-  @apply text-[var(--ag-gray-light)];
-  @apply text-sm;
-  @apply uppercase;
-  @apply tracking-widest;
-}
-
-.cyber-header__accent {
-  @apply absolute top-0 right-0;
-  @apply w-32 h-32;
-  @apply bg-[var(--ag-gray-secondary)]/30;
-  @apply [clip-path:polygon(100%_0,100%_100%,0_100%)];
-}
-
-/* Табы ОС */
-.os-tabs {
-  @apply flex;
-  @apply mb-8;
-  @apply gap-2;
-}
-
-.os-tab {
-  @apply flex items-center gap-2;
-  @apply px-6 py-3;
-  @apply bg-[var(--ag-gray-primary)];
-  @apply border border-[var(--ag-gray-secondary)];
-  @apply text-[var(--ag-gray-light)];
-  @apply text-sm font-bold;
-  @apply uppercase tracking-wider;
-  @apply transition-all duration-300;
-  @apply [clip-path:polygon(0_0,calc(100%_-_12px)_0,100%_12px,100%_100%,12px_100%,0_calc(100%_-_12px))];
-  @apply hover:text-[var(--ag-white-secondary)];
-  @apply hover:border-[var(--ag-gray-tertiary)];
-  @apply cursor-pointer;
-}
-
-.os-tab--active {
-  @apply bg-[var(--ag-gray-secondary)];
-  @apply text-[var(--ag-white-primary)];
-  @apply border-[var(--ag-gray-tertiary)];
-}
-
-/* Настройки пользователя */
-.user-settings {
-  @apply mb-8;
-  @apply p-6;
-  @apply bg-[var(--ag-gray-primary)];
-  @apply border border-[var(--ag-gray-secondary)];
-  @apply [clip-path:polygon(0_0,calc(100%_-_12px)_0,100%_12px,100%_100%,12px_100%,0_calc(100%_-_12px))];
-}
-
-.user-settings__title {
-  @apply text-[var(--ag-white-primary)];
-  @apply font-bold;
-  @apply text-lg;
-  @apply mb-4;
-  @apply uppercase tracking-wider;
-}
-
-.user-settings__grid {
-  @apply grid grid-cols-1 md:grid-cols-3 gap-4;
-}
-
-.user-settings__item {
-  @apply flex flex-col gap-2;
-}
-
-.user-settings__label {
-  @apply text-[var(--ag-gray-lighter)];
-  @apply text-sm;
-  @apply font-medium;
-}
-
-.user-settings__input {
-  @apply px-3 py-2;
-  @apply bg-[var(--ag-black-tertiary)];
-  @apply border border-[var(--ag-gray-tertiary)];
-  @apply text-[var(--ag-white-primary)];
-  @apply font-mono;
-  @apply text-sm;
-  @apply rounded;
-  @apply transition-all duration-200;
-  @apply focus:border-[var(--ag-gray-light)];
-  @apply focus:outline-none;
-}
-
-.user-settings__input::placeholder {
-  @apply text-[var(--ag-gray-light)];
-}
-
-/* Контент */
-.cyber-content {
-  @apply space-y-6;
-}
-
-/* Шаги */
-.cyber-step {
-  @apply bg-[var(--ag-gray-primary)]/50;
-  @apply border border-[var(--ag-gray-secondary)];
-  @apply [clip-path:polygon(0_0,calc(100%_-_16px)_0,100%_16px,100%_100%,16px_100%,0_calc(100%_-_16px))];
-  @apply overflow-hidden;
-  @apply transition-all duration-300;
-  @apply hover:border-[var(--ag-gray-tertiary)];
-}
-
-.cyber-step__header {
-  @apply flex items-center gap-4;
-  @apply p-4;
-  @apply bg-[var(--ag-gray-primary)];
-  @apply border-b border-[var(--ag-gray-secondary)];
-}
-
-.cyber-step__number {
-  @apply flex items-center justify-center;
-  @apply w-12 h-12;
-  @apply bg-[var(--ag-gray-tertiary)];
-  @apply text-[var(--ag-white-primary)];
-  @apply font-bold;
-  @apply text-lg;
-  @apply [clip-path:polygon(0_0,calc(100%_-_8px)_0,100%_8px,100%_100%,8px_100%,0_calc(100%_-_8px))];
-}
-
-.cyber-step__title {
-  @apply text-xl font-bold;
-  @apply text-[var(--ag-white-primary)];
-  @apply uppercase tracking-wider;
-}
-
-.cyber-step__body {
-  @apply p-6;
-  @apply space-y-4;
-}
-
-/* Команды */
-.cyber-command {
-  @apply bg-[var(--ag-gray-primary)];
-  @apply border border-[var(--ag-gray-secondary)];
-  @apply [clip-path:polygon(0_0,calc(100%_-_8px)_0,100%_8px,100%_100%,8px_100%,0_calc(100%_-_8px))];
-  @apply overflow-hidden;
-  @apply shadow-lg;
-}
-
-.cyber-command__header {
-  @apply flex items-center justify-between;
-  @apply px-4 py-2;
-  @apply bg-[var(--ag-gray-secondary)];
-  @apply border-b border-[var(--ag-gray-tertiary)];
-}
-
-.cyber-command__label {
-  @apply text-xs font-bold;
-  @apply text-[var(--ag-white-primary)];
-  @apply uppercase tracking-widest;
-}
-
-.cyber-command__code {
-  @apply px-4 py-3;
-  @apply font-mono;
-  @apply text-[var(--ag-white-primary)];
-  @apply text-sm;
-  @apply break-all;
-  @apply bg-[var(--ag-black-tertiary)];
-  @apply border-t border-[var(--ag-gray-tertiary)];
-}
-
-/* Кнопки */
-.cyber-button {
-  @apply flex items-center gap-2;
-  @apply px-3 py-2;
-  @apply font-bold;
-  @apply text-xs;
-  @apply uppercase tracking-wider;
-  @apply transition-all duration-200;
-  @apply [clip-path:polygon(0_0,calc(100%_-_6px)_0,100%_6px,100%_100%,6px_100%,0_calc(100%_-_6px))];
-  @apply active:scale-95;
-  @apply cursor-pointer;
-}
-
-.cyber-button--copy {
-  @apply bg-[var(--ag-gray-light)];
-  @apply text-[var(--ag-black-primary)];
-  @apply hover:bg-[var(--ag-white-secondary)];
-  @apply hover:text-[var(--ag-black-primary)];
-}
-
-.cyber-button--primary {
-  @apply bg-[var(--ag-white-primary)];
-  @apply text-[var(--ag-black-primary)];
-  @apply hover:bg-[var(--ag-white-secondary)];
-  @apply px-6 py-3;
-}
-
-/* Инструкции */
-.cyber-instructions {
-  @apply space-y-2;
-  @apply text-[var(--ag-white-secondary)];
-  @apply text-sm;
-}
-
-.cyber-code {
-  @apply bg-[var(--ag-gray-primary)];
-  @apply px-2 py-1;
-  @apply text-[var(--ag-white-primary)];
-  @apply font-mono;
-  @apply text-xs;
-  @apply [clip-path:polygon(0_0,calc(100%_-_4px)_0,100%_4px,100%_100%,4px_100%,0_calc(100%_-_4px))];
-}
-
-.cyber-config-block {
-  @apply mt-3;
-  @apply p-4;
-  @apply bg-[var(--ag-gray-primary)];
-  @apply border border-[var(--ag-gray-secondary)];
-  @apply [clip-path:polygon(0_0,calc(100%_-_8px)_0,100%_8px,100%_100%,8px_100%,0_calc(100%_-_8px))];
-  @apply overflow-x-auto;
-  @apply shadow-md;
-}
-
-.cyber-config-block pre {
-  @apply text-[var(--ag-white-primary)];
-  @apply font-mono;
-  @apply text-sm;
-  @apply whitespace-pre;
-}
-
-.cyber-config-list {
-  @apply mt-3;
-  @apply space-y-2;
-  @apply text-sm;
-}
-
-.cyber-config-list li {
-  @apply flex items-start gap-2;
-}
-
-/* Футер */
-.cyber-footer {
-  @apply mt-8;
-  @apply pt-6;
-  @apply border-t border-[var(--ag-gray-tertiary)];
-}
-
-.cyber-toggle {
-  @apply flex items-center gap-2;
-  @apply px-4 py-2;
-  @apply bg-[var(--ag-gray-primary)];
-  @apply text-[var(--ag-white-secondary)];
-  @apply text-sm font-bold;
-  @apply uppercase tracking-wider;
-  @apply [clip-path:polygon(0_0,calc(100%_-_8px)_0,100%_8px,100%_100%,8px_100%,0_calc(100%_-_8px))];
-  @apply transition-all duration-200;
-  @apply hover:bg-[var(--ag-gray-secondary)];
-  @apply hover:text-[var(--ag-white-primary)];
-  @apply cursor-pointer;
-}
-
-.cyber-advanced {
-  @apply mt-4;
-  @apply p-4;
-  @apply bg-[var(--ag-gray-secondary)];
-  @apply border border-[var(--ag-gray-light)];
-  @apply [clip-path:polygon(0_0,calc(100%_-_12px)_0,100%_12px,100%_100%,12px_100%,0_calc(100%_-_12px))];
-  @apply shadow-md;
-}
-
-.cyber-advanced h4 {
-  @apply text-[var(--ag-white-primary)];
-  @apply font-bold;
-  @apply mb-3;
-  @apply uppercase tracking-wider;
-}
-
-.cyber-advanced__list {
-  @apply space-y-2;
-}
-
-.cyber-advanced__item {
-  @apply flex items-center justify-between;
-  @apply p-2;
-  @apply bg-[var(--ag-gray-primary)];
-  @apply border border-[var(--ag-gray-light)];
-  @apply [clip-path:polygon(0_0,calc(100%_-_6px)_0,100%_6px,100%_100%,6px_100%,0_calc(100%_-_6px))];
-}
-
-.cyber-advanced__item code {
-  @apply text-[var(--ag-white-primary)];
-  @apply font-mono;
-  @apply text-xs;
-}
-
-.cyber-advanced__item span {
-  @apply text-[var(--ag-gray-lighter)];
-  @apply text-xs;
-}
+/* CSS модуль импортируется в script setup */
 </style>
