@@ -54,6 +54,7 @@ const emit = defineEmits(['click', 'moreClick'])
   @apply cursor-pointer;
   @apply transition-all duration-300;
   @apply transform translate-x-0;
+  @apply [clip-path:polygon(0_0,calc(100%_-_8px)_0,100%_8px,100%_100%,8px_100%,0_calc(100%_-_8px))];
 }
 
 .left-bar__item:hover {
@@ -66,8 +67,13 @@ const emit = defineEmits(['click', 'moreClick'])
 }
 
 .left-bar__item.active {
-  @apply bg-amber-500/20;
-  @apply rounded-lg;
+  @apply bg-[var(--ag-gray-primary)];
+  @apply translate-x-2;
+
+  .icn-more {
+    @apply opacity-100;
+    @apply scale-100;
+  }
 }
 
 .icn {
@@ -84,7 +90,7 @@ const emit = defineEmits(['click', 'moreClick'])
 .icn-more {
   @apply flex justify-center items-center;
   @apply w-6 h-6;
-  @apply text-amber-50;
+  @apply text-[var(--ag-white-secondary)];
   @apply p-1;
   @apply cursor-pointer;
   @apply rotate-90;
@@ -99,6 +105,6 @@ const emit = defineEmits(['click', 'moreClick'])
 }
 
 .text {
-  @apply text-amber-100;
+  @apply text-[var(--ag-white-primary)];
 }
 </style>

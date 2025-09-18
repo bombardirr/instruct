@@ -16,23 +16,29 @@ import Footer from "~/components/layout/Footer/Footer.vue";
 </template>
 
 <style>
-@import "tailwindcss";
-
 .default-layout {
-  @apply relative;
-  @apply w-full min-h-screen;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--ag-black-primary);
 
   .default-layout__wrapper {
-    @apply relative;
-    @apply flex flex-col justify-between;
-    @apply max-w-[1920px] min-h-screen mx-auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 1920px;
+    min-height: 100vh;
+    margin: 0 auto;
 
     main {
-      @apply relative;
-      @apply flex-1;
-      @apply flex justify-center items-center;
-      @apply p-8;
-      @apply bg-[var(--ag-green-primary)];
+      position: relative;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      background-color: var(--ag-black-primary);
     }
   }
 }

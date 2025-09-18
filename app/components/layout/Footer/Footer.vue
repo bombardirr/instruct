@@ -4,6 +4,8 @@
   
   <style>
   footer {
-    @apply bg-[var(--ag-green-primary)];
+    background-color: var(--ag-black-primary);
+    color: var(--ag-white-primary);
+    padding: 1rem;
   }
   </style>

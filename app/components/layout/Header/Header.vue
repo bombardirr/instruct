@@ -6,10 +6,13 @@
   </template>
   
   <style>
-  @import "tailwindcss";
-  
   header {
-    @apply flex justify-start items-center gap-2;
-    @apply bg-[var(--ag-green-primary)];
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--ag-black-primary);
+    color: var(--ag-white-primary);
+    padding: 1rem;
   }
   </style>

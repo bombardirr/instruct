@@ -1,7 +1,14 @@
 <script setup>
 import SidebarItem from './SidebarItem.vue'
 
-const isMenuItemClicked = ref(false)
+const props = defineProps({
+  activeItem: {
+    type: String,
+    default: 'ssh'
+  }
+})
+
+const emit = defineEmits(['item-click', 'more-click'])
 
 const menuItems = [
   {
@@ -22,12 +29,12 @@ const menuItems = [
 
 const handleItemClick = (item) => {
   console.log('Clicked item:', item)
-  // Здесь можно добавить логику обработки клика
+  emit('item-click', item)
 }
 
 const handleMoreClick = (item) => {
   console.log('Clicked more for item:', item)
-  // Здесь можно добавить логику обработки клика на дополнительную опцию
+  emit('more-click', item)
 }
 </script>
 
@@ -42,7 +49,7 @@ const handleMoreClick = (item) => {
         :text="item.text"
         :more-text="item.moreText"
         :more-icon="item.moreIcon"
-        :is-active="isMenuItemClicked"
+        :is-active="props.activeItem === item.id"
         @click="handleItemClick(item)"
         @more-click="handleMoreClick(item)"
       />

@@ -42,28 +42,33 @@ onMounted(() => {
 @import "tailwindcss";
 
 .console {
-  @apply absolute bottom-2 left-16;
-  @apply w-[40%] max-w-[500px] aspect-video;
-  @apply p-4;
-  @apply font-mono;
-  @apply text-green-500;
-  @apply bg-black;
-  @apply rounded-2xl;
+  position: absolute;
+  bottom: 0.5rem;
+  left: 4rem;
+  width: 40%;
+  max-width: 500px;
+  aspect-ratio: 16/9;
+  padding: 1rem;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+  color: var(--ag-gray-lighter);
+  background-color: var(--ag-gray-primary);
+  border-radius: 1rem;
+  border: 1px solid var(--ag-gray-secondary);
 
   div {
-    @apply w-full;
-    @apply whitespace-pre-wrap;
-    @apply break-words;
-    @apply inline;
+    width: 100%;
+    white-space: pre-wrap;
+    word-break: break-words;
+    display: inline;
   }
 
   .cursor {
-    @apply text-green-500;
-    @apply font-mono;
-    @apply text-lg;
-    @apply font-bold;
-    @apply inline;
-    @apply animate-pulse;
+    color: var(--ag-gray-lighter);
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 1.125rem;
+    font-weight: bold;
+    display: inline;
+    animation: pulse 2s infinite;
   }
 }
 </style>

@@ -7,7 +7,17 @@ export default defineNuxtConfig({
     modules: ['@nuxt/eslint', '@nuxt/image', '@nuxt/ui', '@nuxt/icon'],
     vite: {
         plugins: [
-            tailwindcss(),
+            tailwindcss({
+                content: [
+                    './app/**/*.{js,vue,ts}',
+                    './components/**/*.{js,vue,ts}',
+                    './layouts/**/*.vue',
+                    './pages/**/*.vue',
+                    './plugins/**/*.{js,ts}',
+                    './app.vue',
+                    './error.vue'
+                ]
+            }),
         ],
     },
     css: ['~/assets/styles/main.css']
