@@ -1,65 +1,49 @@
 @import "tailwindcss";
 
-/* ===== ОСНОВНЫЕ КОНТЕЙНЕРЫ ===== */
 .manual {
-  width: 100%;
-  height: 100%;
-  padding: 1.5rem;
-  overflow-y: auto;
-  color: var(--ag-white-primary);
-  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+  @apply w-full h-full;
+  @apply p-6;
+  @apply overflow-y-auto;
+  @apply text-[var(--ag-white-primary)] font-mono;
 }
 
-/* Заголовок с tabs */
 .header {
   @apply relative;
-  @apply mb-8;
-  @apply p-6;
+  @apply flex justify-between items-center;
+  @apply mb-8 p-6;
   @apply bg-[var(--ag-gray-primary)];
   @apply [clip-path:polygon(0_0,calc(100%_-_20px)_0,100%_20px,100%_100%,20px_100%,0_calc(100%_-_20px))];
   @apply overflow-hidden;
-  @apply flex;
-  @apply justify-between;
-  @apply items-center;
 }
 
 .header__content {
-  @apply relative z-10;
+  @apply relative;
+  @apply z-10;
 }
 
 .header__title {
-  @apply text-4xl font-bold;
-  @apply text-[var(--ag-white-primary)];
   @apply mb-2;
-  @apply tracking-wider;
+  @apply text-4xl font-bold text-[var(--ag-white-primary)] tracking-wider;
 }
 
 .header__subtitle {
-  @apply text-[var(--ag-gray-light)];
-  @apply text-sm;
-  @apply uppercase;
-  @apply tracking-widest;
+  @apply text-sm text-[var(--ag-gray-light)] uppercase tracking-widest;
 }
 
-/* Табы */
 .tabs {
-  @apply flex;
-  @apply gap-2;
   @apply relative z-10;
+  @apply flex gap-2;
 }
 
 .tabs__item {
   @apply flex items-center gap-2;
   @apply px-6 py-3;
-  @apply bg-[var(--ag-gray-primary)];
-  @apply text-[var(--ag-gray-light)];
-  @apply text-sm font-bold;
-  @apply uppercase tracking-wider;
-  @apply transition-all duration-300;
-  @apply [clip-path:polygon(0_0,calc(100%_-_12px)_0,100%_12px,100%_100%,12px_100%,0_calc(100%_-_12px))];
-  @apply hover:text-[var(--ag-white-secondary)];
-  @apply hover:border-[var(--ag-gray-tertiary)];
   @apply cursor-pointer;
+  @apply bg-[var(--ag-gray-primary)];
+  @apply text-sm font-bold text-[var(--ag-gray-light)] uppercase tracking-wider;
+  @apply [clip-path:polygon(0_0,calc(100%_-_12px)_0,100%_12px,100%_100%,12px_100%,0_calc(100%_-_12px))];
+  @apply hover:text-[var(--ag-white-secondary)] hover:border-[var(--ag-gray-tertiary)];
+  @apply transition-all duration-300;
 }
 
 .tabs__item--active {
@@ -68,10 +52,8 @@
   @apply border-[var(--ag-gray-tertiary)];
 }
 
-/* Настройки пользователя */
 .settings {
-  @apply mb-8;
-  @apply p-6;
+  @apply mb-8 p-6;
   @apply bg-[var(--ag-gray-primary)];
   @apply [clip-path:polygon(0_0,calc(100%_-_12px)_0,100%_12px,100%_100%,12px_100%,0_calc(100%_-_12px))];
 }
@@ -82,39 +64,31 @@
 }
 
 .settings__title {
-  @apply text-[var(--ag-white-primary)];
-  @apply font-bold;
-  @apply text-lg;
-  @apply uppercase tracking-wider;
+  @apply text-lg font-bold text-[var(--ag-white-primary)] uppercase tracking-wider;
 }
 
 .settings__disclaimer {
   @apply px-3 py-1;
+  @apply text-center;
   @apply bg-[var(--ag-gray-secondary)];
   @apply [clip-path:polygon(0_0,calc(100%_-_6px)_0,100%_6px,100%_100%,6px_100%,0_calc(100%_-_6px))];
-  @apply text-center;
 }
 
 .settings__disclaimer p {
-  @apply text-[var(--ag-gray-lighter)];
-  @apply text-xs;
-  @apply font-medium;
-  @apply italic;
   @apply flex items-center;
+  @apply text-xs font-medium text-[var(--ag-gray-lighter)];
 }
 
 .settings__smiley {
-  @apply transition-all duration-300;
   @apply relative;
   @apply inline-block;
+  @apply transition-all duration-300;
 }
 
 .settings__smiley::before {
   content: attr(data-smiley);
   @apply absolute inset-0;
-  @apply text-[var(--ag-white-primary)];
-  @apply font-medium;
-  @apply italic;
+  @apply font-medium text-[var(--ag-white-primary)];
   @apply opacity-0;
   @apply transition-opacity duration-300;
   text-shadow: 
@@ -140,40 +114,33 @@
 }
 
 .settings__label {
-  @apply text-[var(--ag-gray-lighter)];
-  @apply text-sm;
-  @apply font-medium;
+  @apply text-sm font-medium text-[var(--ag-gray-lighter)];
 }
 
 .settings__input {
   @apply px-3 py-2;
-  @apply bg-[var(--ag-black-tertiary)];
-  @apply border border-[var(--ag-gray-tertiary)];
-  @apply text-[var(--ag-white-primary)];
-  @apply font-mono;
-  @apply text-sm;
   @apply rounded;
+  @apply border border-[var(--ag-gray-tertiary)];
+  @apply bg-[var(--ag-black-tertiary)];
+  @apply text-sm font-mono text-[var(--ag-white-primary)];
+  @apply focus:border-[var(--ag-gray-light)] focus:outline-none;
   @apply transition-all duration-200;
-  @apply focus:border-[var(--ag-gray-light)];
-  @apply focus:outline-none;
 }
 
 .settings__input::placeholder {
   @apply text-[var(--ag-gray-light)];
 }
 
-/* Контент */
 .content {
   @apply space-y-6;
 }
 
-/* Шаги */
 .step {
+  @apply overflow-hidden;
   @apply bg-[var(--ag-gray-primary)]/50;
   @apply [clip-path:polygon(0_0,calc(100%_-_16px)_0,100%_16px,100%_100%,16px_100%,0_calc(100%_-_16px))];
-  @apply overflow-hidden;
-  @apply transition-all duration-300;
   @apply hover:border-[var(--ag-gray-tertiary)];
+  @apply transition-all duration-300;
 }
 
 .step__header {
@@ -184,25 +151,21 @@
 }
 
 .step__number {
+  @apply relative;
   @apply flex items-center justify-center;
   @apply w-12 h-12;
-  @apply bg-[var(--ag-gray-tertiary)];
-  @apply text-[var(--ag-white-primary)];
-  @apply font-bold;
-  @apply text-lg;
   @apply cursor-pointer;
+  @apply bg-[var(--ag-gray-tertiary)];
+  @apply text-lg font-bold text-[var(--ag-white-primary)];
   @apply [clip-path:polygon(0_0,calc(100%_-_8px)_0,100%_8px,100%_100%,8px_100%,0_calc(100%_-_8px))];
   @apply transition-all duration-300;
-  @apply relative;
 }
 
 .step__number::before {
   content: attr(data-number);
   @apply absolute inset-0;
   @apply flex items-center justify-center;
-  @apply text-[var(--ag-white-primary)];
-  @apply font-bold;
-  @apply text-lg;
+  @apply text-lg font-bold text-[var(--ag-white-primary)];
   @apply opacity-0;
   @apply transition-opacity duration-300;
   text-shadow: 
@@ -220,9 +183,7 @@
 }
 
 .step__title {
-  @apply text-xl font-bold;
-  @apply text-[var(--ag-white-primary)];
-  @apply uppercase tracking-wider;
+  @apply text-xl font-bold text-[var(--ag-white-primary)] uppercase tracking-wider;
 }
 
 .step__body {
@@ -281,11 +242,10 @@
   }
 }
 
-/* Команды */
 .command {
+  @apply overflow-hidden;
   @apply bg-[var(--ag-gray-primary)];
   @apply [clip-path:polygon(0_0,calc(100%_-_8px)_0,100%_8px,100%_100%,8px_100%,0_calc(100%_-_8px))];
-  @apply overflow-hidden;
   @apply shadow-lg;
 }
 
@@ -297,29 +257,23 @@
 }
 
 .command__label {
-  @apply text-xs font-bold;
-  @apply text-[var(--ag-white-primary)];
-  @apply uppercase tracking-widest;
+  @apply text-xs font-bold text-[var(--ag-white-primary)] uppercase tracking-widest;
 }
 
 .command__code {
+  @apply relative;
   @apply px-4 py-3;
   @apply min-h-[45px];
-  @apply font-mono;
-  @apply text-[var(--ag-white-primary)];
-  @apply text-sm;
+  @apply text-sm font-mono text-[var(--ag-white-primary)];
   @apply break-all;
   @apply bg-[var(--ag-black-tertiary)];
   @apply border-t border-[var(--ag-gray-tertiary)];
-  @apply relative;
 }
 
 .command__code::after {
   content: '_';
   @apply absolute;
-  @apply text-[var(--ag-white-primary)];
-  @apply font-mono;
-  @apply font-bold;
+  @apply font-mono font-bold text-[var(--ag-white-primary)];
   @apply opacity-0;
   @apply transition-opacity duration-300;
 }
@@ -329,68 +283,56 @@
   animation: cursor-blink 0.8s ease-in-out infinite alternate;
 }
 
-/* Кнопки */
 .button {
   @apply flex items-center gap-2;
   @apply px-3 py-2;
-  @apply font-bold;
-  @apply text-xs;
-  @apply uppercase tracking-wider;
-  @apply transition-all duration-200;
+  @apply cursor-pointer;
+  @apply text-xs font-bold uppercase tracking-wider;
   @apply [clip-path:polygon(0_0,calc(100%_-_6px)_0,100%_6px,100%_100%,6px_100%,0_calc(100%_-_6px))];
   @apply active:scale-95;
-  @apply cursor-pointer;
+  @apply transition-all duration-200;
 }
 
 .button--copy {
   @apply bg-[var(--ag-gray-light)];
   @apply text-[var(--ag-black-primary)];
-  @apply hover:bg-[var(--ag-white-secondary)];
-  @apply hover:text-[var(--ag-black-primary)];
+  @apply hover:bg-[var(--ag-white-secondary)] hover:text-[var(--ag-black-primary)];
 }
 
 .button--primary {
+  @apply px-6 py-3;
   @apply bg-[var(--ag-white-primary)];
   @apply text-[var(--ag-black-primary)];
   @apply hover:bg-[var(--ag-white-secondary)];
-  @apply px-6 py-3;
 }
 
-/* Инструкции */
 .instructions {
   @apply space-y-2;
-  @apply text-[var(--ag-white-secondary)];
-  @apply text-sm;
+  @apply text-sm text-[var(--ag-white-secondary)];
 }
 
 .code {
-  @apply bg-[var(--ag-gray-primary)];
   @apply px-2 py-1;
-  @apply text-[var(--ag-white-primary)];
-  @apply font-mono;
-  @apply text-xs;
+  @apply bg-[var(--ag-gray-primary)];
+  @apply text-xs font-mono text-[var(--ag-white-primary)];
   @apply [clip-path:polygon(0_0,calc(100%_-_4px)_0,100%_4px,100%_100%,4px_100%,0_calc(100%_-_4px))];
 }
 
 .config {
-  @apply mt-3;
-  @apply p-4;
+  @apply mt-3 p-4;
+  @apply overflow-x-auto;
   @apply bg-[var(--ag-gray-primary)];
   @apply [clip-path:polygon(0_0,calc(100%_-_8px)_0,100%_8px,100%_100%,8px_100%,0_calc(100%_-_8px))];
-  @apply overflow-x-auto;
   @apply shadow-md;
 }
 
 .config pre {
-  @apply text-[var(--ag-white-primary)];
-  @apply font-mono;
-  @apply text-sm;
+  @apply text-sm font-mono text-[var(--ag-white-primary)];
   @apply whitespace-pre;
 }
 
 .config__list {
-  @apply mt-3;
-  @apply space-y-2;
+  @apply mt-3 space-y-2;
   @apply text-sm;
 }
 
@@ -398,30 +340,24 @@
   @apply flex items-start gap-2;
 }
 
-/* Футер */
 .footer {
-  @apply mt-8;
-  @apply pt-6;
+  @apply mt-8 pt-6;
   @apply border-t border-[var(--ag-gray-tertiary)];
 }
 
 .footer__toggle {
   @apply flex items-center gap-2;
   @apply px-4 py-2;
-  @apply bg-[var(--ag-gray-primary)];
-  @apply text-[var(--ag-white-secondary)];
-  @apply text-sm font-bold;
-  @apply uppercase tracking-wider;
-  @apply [clip-path:polygon(0_0,calc(100%_-_8px)_0,100%_8px,100%_100%,8px_100%,0_calc(100%_-_8px))];
-  @apply transition-all duration-200;
-  @apply hover:bg-[var(--ag-gray-secondary)];
-  @apply hover:text-[var(--ag-white-primary)];
   @apply cursor-pointer;
+  @apply bg-[var(--ag-gray-primary)];
+  @apply text-sm font-bold text-[var(--ag-white-secondary)] uppercase tracking-wider;
+  @apply [clip-path:polygon(0_0,calc(100%_-_8px)_0,100%_8px,100%_100%,8px_100%,0_calc(100%_-_8px))];
+  @apply hover:bg-[var(--ag-gray-secondary)] hover:text-[var(--ag-white-primary)];
+  @apply transition-all duration-200;
 }
 
 .footer__advanced {
-  @apply mt-4;
-  @apply p-4;
+  @apply mt-4 p-4;
   @apply bg-[var(--ag-gray-secondary)];
   @apply border border-[var(--ag-gray-light)];
   @apply [clip-path:polygon(0_0,calc(100%_-_12px)_0,100%_12px,100%_100%,12px_100%,0_calc(100%_-_12px))];
@@ -429,10 +365,8 @@
 }
 
 .footer__advanced h4 {
-  @apply text-[var(--ag-white-primary)];
-  @apply font-bold;
   @apply mb-3;
-  @apply uppercase tracking-wider;
+  @apply font-bold text-[var(--ag-white-primary)] uppercase tracking-wider;
 }
 
 .footer__advanced__list {
@@ -448,12 +382,9 @@
 }
 
 .footer__advanced__item code {
-  @apply text-[var(--ag-white-primary)];
-  @apply font-mono;
-  @apply text-xs;
+  @apply text-xs font-mono text-[var(--ag-white-primary)];
 }
 
 .footer__advanced__item span {
-  @apply text-[var(--ag-gray-lighter)];
-  @apply text-xs;
+  @apply text-xs text-[var(--ag-gray-lighter)];
 }

@@ -25,3 +25,4 @@ logs
 /eslint.config.mjs
 /package-lock.json
 /public/robots.txt
+/.vscode/settings.json

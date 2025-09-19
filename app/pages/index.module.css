@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+.home {
+  @apply relative;
+  @apply flex;
+  @apply justify-between;
+  @apply items-center;
+  @apply gap-12;
+  @apply flex-1;
+  @apply bg-[var(--ag-black-primary)];
+  @apply h-screen;
+  @apply [clip-path:polygon(20px_0,calc(100%_-_20px)_0,100%_20px,100%_calc(100%_-_20px),calc(100%_-_20px)_100%,20px_100%,0_calc(100%_-_20px),0_20px)];
+}
+
+.home__content {
+  @apply w-full;
+  @apply h-full;
+  @apply ml-[300px];
+  @apply bg-[var(--ag-black-secondary)];
+}

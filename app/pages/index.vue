@@ -3,6 +3,7 @@ import Sidebar from "~/components/layout/Sidebar/Sidebar.vue";
 import Manual from "~/components/ui/Manual/Manual.vue";
 import { sshConfig } from "~/components/ui/Manual/sshConfig.js";
 import { ideConfig } from "~/components/ui/Manual/ideConfig.js";
+import styles from './index.module.css'
 
 const activeComponent = ref('ssh')
 
@@ -35,31 +36,10 @@ const handleMoreClick = (item) => {
 </script>
 
 <template>
-  <div class="home-container">
+  <div :class="styles.home">
     <Sidebar :active-item="activeComponent" @item-click="handleSidebarClick" @more-click="handleMoreClick"/>
-    <div class="home-container__content">
+    <div :class="styles.home__content">
       <Manual :config="currentConfig"/>
     </div>
   </div>
 </template>
-
-<style>
-.home-container {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 3rem;
-  flex: 1;
-  background-color: var(--ag-black-primary);
-  clip-path: polygon(20px 0, calc(100% - 20px) 0, 100% 20px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 20px 100%, 0 calc(100% - 20px), 0 20px);
-  height: -webkit-fill-available;
-
-  .home-container__content {
-    width: 100%;
-    height: 100%;
-    margin-left: 300px;
-    background-color: var(--ag-black-secondary);
-  }
-}
-</style>
