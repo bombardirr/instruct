@@ -7,16 +7,16 @@
   @apply rounded-2xl border border-[var(--ag-gray-secondary)];
   @apply bg-[var(--ag-gray-primary)];
   @apply font-mono text-[var(--ag-gray-lighter)];
-}
 
-.console__text {
-  @apply w-full;
-  @apply inline;
-  @apply whitespace-pre-wrap break-words;
-}
+  & .console__text {
+    @apply w-full;
+    @apply inline;
+    @apply whitespace-pre-wrap break-words;
+  }
 
-.console__cursor {
-  @apply inline;
-  @apply text-[var(--ag-gray-lighter)] font-mono text-lg font-bold;
-  @apply animate-pulse;
+  & .console__cursor {
+    @apply inline;
+    @apply text-[var(--ag-gray-lighter)] font-mono text-lg font-bold;
+    @apply animate-pulse;
+  }
 }

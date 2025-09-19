@@ -2,14 +2,14 @@
 
 .home {
   @apply relative;
-  @apply flex justify-between items-center gap-12;
-  @apply flex-1 h-screen;
+  @apply flex justify-between items-start gap-12;
+  @apply flex-1 min-h-screen;
   @apply bg-[var(--ag-black-primary)];
   @apply [clip-path:polygon(20px_0,calc(100%_-_20px)_0,100%_20px,100%_calc(100%_-_20px),calc(100%_-_20px)_100%,20px_100%,0_calc(100%_-_20px),0_20px)];
-}
 
-.home__content {
-  @apply w-full h-full;
-  @apply ml-[300px];
-  @apply bg-[var(--ag-black-secondary)];
+  & .home__content {
+    @apply w-full min-h-full;
+    @apply ml-[300px];
+    @apply bg-[var(--ag-black-secondary)];
+  }
 }

@@ -5,8 +5,8 @@
   @apply p-4;
   @apply bg-[var(--ag-black-primary)];
   @apply text-[var(--ag-white-primary)];
-}
 
-.header__item {
-  @apply text-[var(--ag-white-primary)];
+  & .header__item {
+    @apply text-[var(--ag-white-primary)];
+  }
 }
