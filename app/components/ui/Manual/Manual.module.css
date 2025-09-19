@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 /* ===== ОСНОВНЫЕ КОНТЕЙНЕРЫ ===== */
-.description {
+.manual {
   width: 100%;
   height: 100%;
   padding: 1.5rem;
   overflow-y: auto;
+  background-color: var(--ag-black-tertiary);
   color: var(--ag-white-primary);
   font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
 }
@@ -41,8 +42,7 @@
   @apply tracking-widest;
 }
 
-
-/* Табы ОС */
+/* Табы */
 .tabs {
   @apply flex;
   @apply gap-2;
@@ -104,13 +104,13 @@
   @apply flex items-center;
 }
 
-.settings__disclaimer p .smiley {
+.settings__smiley {
   @apply transition-all duration-300;
   @apply relative;
   @apply inline-block;
 }
 
-.settings__disclaimer p .smiley::before {
+.settings__smiley::before {
   content: attr(data-smiley);
   @apply absolute inset-0;
   @apply text-[var(--ag-white-primary)];
@@ -128,7 +128,7 @@
   animation: glow-pulse-soft 0.8s ease-in-out infinite alternate;
 }
 
-.settings:hover .settings__disclaimer p .smiley::before {
+.settings:hover .settings__smiley::before {
   @apply opacity-100;
 }
 

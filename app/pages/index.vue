@@ -1,9 +1,19 @@
 <script setup>
 import Sidebar from "~/components/layout/Sidebar/Sidebar.vue";
-import Description from "~/components/ui/Description/Description.vue";
-import IDE from "~/components/ui/IDE/IDE.vue";
+import Manual from "~/components/ui/Manual/Manual.vue";
+import { sshConfig } from "~/components/ui/Manual/sshConfig.js";
+import { ideConfig } from "~/components/ui/Manual/ideConfig.js";
 
 const activeComponent = ref('ssh')
+
+// Конфигурации мануалов
+const manualConfigs = {
+  ssh: sshConfig,
+  ide: ideConfig
+}
+
+// Текущая конфигурация
+const currentConfig = computed(() => manualConfigs[activeComponent.value])
 
 const handleSidebarClick = (item) => {
   console.log('Clicked item:', item)
@@ -28,8 +38,7 @@ const handleMoreClick = (item) => {
   <div class="home-container">
     <Sidebar :active-item="activeComponent" @item-click="handleSidebarClick" @more-click="handleMoreClick"/>
     <div class="home-container__content">
-      <Description v-if="activeComponent === 'ssh'"/>
-      <IDE v-if="activeComponent === 'ide'"/>
+      <Manual :config="currentConfig"/>
     </div>
   </div>
 </template>
