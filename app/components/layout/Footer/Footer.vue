@@ -1,11 +1,9 @@
 <template>
-    <footer>Footer</footer>
-  </template>
-  
-  <style>
-  footer {
-    background-color: var(--ag-black-primary);
-    color: var(--ag-white-primary);
-    padding: 1rem;
-  }
-  </style>
+  <footer :class="styles.footer">
+    <div :class="styles.footer__content">Footer</div>
+  </footer>
+</template>
+
+<script setup>
+import styles from './Footer.module.css'
+</script>

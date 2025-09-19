@@ -1,5 +1,6 @@
 <script setup>
 import { useNuxtApp } from "#app";
+import styles from './Console.module.css'
 
 const props = defineProps({
   str: {
@@ -32,43 +33,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="console">
-    <div ref="stringRef" />
-    <span class="cursor">_</span>
+  <div :class="styles.console">
+    <div :class="styles.console__text" ref="stringRef" />
+    <span :class="styles.console__cursor">_</span>
   </div>
 </template>
-
-<style>
-@import "tailwindcss";
-
-.console {
-  position: absolute;
-  bottom: 0.5rem;
-  left: 4rem;
-  width: 40%;
-  max-width: 500px;
-  aspect-ratio: 16/9;
-  padding: 1rem;
-  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
-  color: var(--ag-gray-lighter);
-  background-color: var(--ag-gray-primary);
-  border-radius: 1rem;
-  border: 1px solid var(--ag-gray-secondary);
-
-  div {
-    width: 100%;
-    white-space: pre-wrap;
-    word-break: break-words;
-    display: inline;
-  }
-
-  .cursor {
-    color: var(--ag-gray-lighter);
-    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
-    font-size: 1.125rem;
-    font-weight: bold;
-    display: inline;
-    animation: pulse 2s infinite;
-  }
-}
-</style>

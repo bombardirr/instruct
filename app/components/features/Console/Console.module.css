@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+/* Базовый класс */
+.console {
+  @apply absolute;
+  @apply bottom-2;
+  @apply left-16;
+  @apply w-2/5;
+  @apply max-w-[500px];
+  @apply aspect-video;
+  @apply p-4;
+  @apply font-mono;
+  @apply text-[var(--ag-gray-lighter)];
+  @apply bg-[var(--ag-gray-primary)];
+  @apply rounded-2xl;
+  @apply border;
+  @apply border-[var(--ag-gray-secondary)];
+}
+
+/* Элементы */
+.console__text {
+  @apply w-full;
+  @apply whitespace-pre-wrap;
+  @apply break-words;
+  @apply inline;
+}
+
+.console__cursor {
+  @apply text-[var(--ag-gray-lighter)];
+  @apply font-mono;
+  @apply text-lg;
+  @apply font-bold;
+  @apply inline;
+  @apply animate-pulse;
+}

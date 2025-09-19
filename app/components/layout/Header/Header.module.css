@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+/* Базовый класс */
+.header {
+  @apply flex;
+  @apply justify-start;
+  @apply items-center;
+  @apply gap-2;
+  @apply bg-[var(--ag-black-primary)];
+  @apply text-[var(--ag-white-primary)];
+  @apply p-4;
+}
+
+/* Элементы */
+.header__item {
+  @apply text-[var(--ag-white-primary)];
+}

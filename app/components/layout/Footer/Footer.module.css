@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+/* Базовый класс */
+.footer {
+  @apply bg-[var(--ag-black-primary)];
+  @apply text-[var(--ag-white-primary)];
+  @apply p-4;
+}
+
+/* Элементы */
+.footer__content {
+  @apply text-[var(--ag-white-primary)];
+}

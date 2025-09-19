@@ -1,5 +1,6 @@
 <script setup>
 import SidebarItem from './SidebarItem.vue'
+import styles from './Sidebar.module.css'
 
 const props = defineProps({
   activeItem: {
@@ -39,9 +40,9 @@ const handleMoreClick = (item) => {
 </script>
 
 <template>
-  <aside class="left-bar">
-    <div class="left-bar__container">
-      <div class="left-bar__borderA"/>
+  <aside :class="styles.sidebar">
+    <div :class="styles.sidebar__container">
+      <div :class="styles.sidebar__border"/>
       <SidebarItem
         v-for="item in menuItems"
         :key="item.id"
@@ -56,25 +57,3 @@ const handleMoreClick = (item) => {
     </div>
   </aside>
 </template>
-
-<style>
-@import "tailwindcss";
-
-.left-bar {
-  @apply absolute;
-  @apply w-fit max-w-[300px] h-full;
-
-  .left-bar__container {
-    @apply relative;
-    @apply flex flex-col justify-start items-start gap-2;
-    @apply w-fit h-full;
-    @apply pl-12 pt-2;
-
-    .left-bar__borderA {
-      @apply absolute top-0 left-0;
-      @apply w-8 h-full;
-      @apply bg-[var(--ag-black-secondary)];
-    }
-  }
-}
-</style>

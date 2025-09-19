@@ -1,18 +1,10 @@
 <template>
-    <header>
-      <div>Linux/Mac</div>
-      <div>Windows</div>
-    </header>
-  </template>
-  
-  <style>
-  header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 0.5rem;
-    background-color: var(--ag-black-primary);
-    color: var(--ag-white-primary);
-    padding: 1rem;
-  }
-  </style>
+  <header :class="styles.header">
+    <div :class="styles.header__item">Linux/Mac</div>
+    <div :class="styles.header__item">Windows</div>
+  </header>
+</template>
+
+<script setup>
+import styles from './Header.module.css'
+</script>

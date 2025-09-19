@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+/* Базовый класс */
+.sidebar {
+  @apply absolute;
+  @apply w-fit max-w-[300px] h-full;
+}
+
+/* Контейнер */
+.sidebar__container {
+  @apply relative;
+  @apply flex flex-col justify-start items-start gap-2;
+  @apply w-fit h-full;
+  @apply pl-12 pt-2;
+}
+
+/* Бордер */
+.sidebar__border {
+  @apply absolute top-0 left-0;
+  @apply w-8 h-full;
+  @apply bg-[var(--ag-black-secondary)];
+}

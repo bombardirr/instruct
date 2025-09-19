@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+/* Базовый класс */
+.item {
+  @apply flex justify-start items-center gap-2;
+  @apply cursor-pointer;
+  @apply transition-all duration-300;
+  @apply transform translate-x-0;
+  @apply [clip-path:polygon(0_0,calc(100%_-_8px)_0,100%_8px,100%_100%,8px_100%,0_calc(100%_-_8px))];
+}
+
+.item:hover {
+  @apply translate-x-2;
+}
+
+.item:hover .item__more {
+  @apply opacity-100;
+  @apply scale-100;
+}
+
+/* Модификатор активного состояния */
+.item--active {
+  @apply bg-[var(--ag-gray-primary)];
+  @apply translate-x-2;
+}
+
+.item--active .item__more {
+  @apply opacity-100;
+  @apply scale-100;
+}
+
+/* Элементы */
+.item__icon {
+  @apply flex justify-center items-center;
+  @apply w-10 h-10;
+  @apply p-1;
+  @apply transition-all duration-300;
+}
+
+.item__icon .iconify {
+  @apply w-full h-full;
+}
+
+.item__text {
+  @apply text-[var(--ag-white-primary)];
+}
+
+.item__more {
+  @apply flex justify-center items-center;
+  @apply w-6 h-6;
+  @apply text-[var(--ag-white-secondary)];
+  @apply p-1;
+  @apply cursor-pointer;
+  @apply rotate-90;
+  @apply transition-all duration-300;
+  @apply opacity-0;
+  @apply scale-95;
+  @apply transform;
+}
+
+.item__more .iconify {
+  @apply w-full h-full;
+}
