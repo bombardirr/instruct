@@ -1,7 +1,7 @@
 <script setup>
 import Sidebar from "~/components/layout/Sidebar/Sidebar.vue";
-import Description from "~/components/features/Description/Description.vue";
-import IDE from "~/components/features/IDE/IDE.vue";
+import Description from "~/components/ui/Description/Description.vue";
+import IDE from "~/components/ui/IDE/IDE.vue";
 
 const activeComponent = ref('ssh')
 

@@ -1,30 +1,29 @@
 <template>
   <div :class="styles.description">
-    <!-- Заголовок -->
+    <!-- Заголовок с tabs -->
     <div :class="styles.header">
       <div :class="styles.header__content">
         <h1 :class="styles.header__title">НАСТРОЙКА SSH</h1>
         <p :class="styles.header__subtitle">Безопасный доступ к репозиторию</p>
       </div>
-      <div :class="styles.header__accent"/>
-    </div>
-
-    <!-- Табы для ОС -->
-    <div :class="styles.tabs">
-      <button 
-        :class="[styles.tabs__item, { [styles['tabs__item--active']]: activeOS === 'linux' }]"
-        @click="activeOS = 'linux'"
-      >
-        <Icon name="simple-icons:linux" />
-        LINUX
-      </button>
-      <button 
-        :class="[styles.tabs__item, { [styles['tabs__item--active']]: activeOS === 'windows' }]"
-        @click="activeOS = 'windows'"
-      >
-        <Icon name="simple-icons:windows" />
-        WINDOWS
-      </button>
+      
+      <!-- Табы для ОС -->
+      <div :class="styles.tabs">
+        <button 
+          :class="[styles.tabs__item, { [styles['tabs__item--active']]: activeOS === 'linux' }]"
+          @click="activeOS = 'linux'"
+        >
+          <Icon name="simple-icons:linux" />
+          LINUX
+        </button>
+        <button 
+          :class="[styles.tabs__item, { [styles['tabs__item--active']]: activeOS === 'windows' }]"
+          @click="activeOS = 'windows'"
+        >
+          <Icon name="simple-icons:windows" />
+          WINDOWS
+        </button>
+      </div>
     </div>
 
     <!-- Настройки пользователя -->

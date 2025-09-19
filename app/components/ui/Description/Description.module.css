@@ -1,17 +1,16 @@
 @import "tailwindcss";
 
 /* ===== ОСНОВНЫЕ КОНТЕЙНЕРЫ ===== */
-.ide {
+.description {
   width: 100%;
   height: 100%;
   padding: 1.5rem;
   overflow-y: auto;
-  background-color: var(--ag-black-tertiary);
   color: var(--ag-white-primary);
-  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monpace;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
 }
 
-/* Заголовок */
+/* Заголовок с tabs */
 .header {
   @apply relative;
   @apply mb-8;
@@ -19,6 +18,9 @@
   @apply bg-[var(--ag-gray-primary)];
   @apply [clip-path:polygon(0_0,calc(100%_-_20px)_0,100%_20px,100%_100%,20px_100%,0_calc(100%_-_20px))];
   @apply overflow-hidden;
+  @apply flex;
+  @apply justify-between;
+  @apply items-center;
 }
 
 .header__content {
@@ -39,18 +41,12 @@
   @apply tracking-widest;
 }
 
-.header__accent {
-  @apply absolute top-0 right-0;
-  @apply w-32 h-32;
-  @apply bg-[var(--ag-gray-secondary)]/30;
-  @apply [clip-path:polygon(100%_0,100%_100%,0_100%)];
-}
 
-/* Табы IDE */
+/* Табы ОС */
 .tabs {
   @apply flex;
-  @apply mb-8;
   @apply gap-2;
+  @apply relative z-10;
 }
 
 .tabs__item {
@@ -235,6 +231,27 @@
   @apply space-y-4;
 }
 
+@keyframes glow-pulse {
+  0% {
+    text-shadow: 
+      0 0 8px #4a9eff,
+      0 0 16px #4a9eff,
+      0 0 24px #4a9eff,
+      0 0 32px #4a9eff,
+      0 0 48px #4a9eff,
+      0 0 64px #4a9eff;
+  }
+  100% {
+    text-shadow: 
+      0 0 12px #4a9eff,
+      0 0 24px #4a9eff,
+      0 0 36px #4a9eff,
+      0 0 48px #4a9eff,
+      0 0 72px #4a9eff,
+      0 0 96px #4a9eff;
+  }
+}
+
 @keyframes glow-pulse-soft {
   0% {
     text-shadow: 
@@ -253,6 +270,15 @@
       0 0 24px #4a9eff,
       0 0 36px #4a9eff,
       0 0 48px #4a9eff;
+  }
+}
+
+@keyframes cursor-blink {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
@@ -332,13 +358,13 @@
 }
 
 /* Инструкции */
-.Instructions {
+.instructions {
   @apply space-y-2;
   @apply text-[var(--ag-white-secondary)];
   @apply text-sm;
 }
 
-.Code {
+.code {
   @apply bg-[var(--ag-gray-primary)];
   @apply px-2 py-1;
   @apply text-[var(--ag-white-primary)];
@@ -374,13 +400,13 @@
 }
 
 /* Футер */
-.Footer {
+.footer {
   @apply mt-8;
   @apply pt-6;
   @apply border-t border-[var(--ag-gray-tertiary)];
 }
 
-.Toggle {
+.footer__toggle {
   @apply flex items-center gap-2;
   @apply px-4 py-2;
   @apply bg-[var(--ag-gray-primary)];
@@ -408,36 +434,6 @@
   @apply font-bold;
   @apply mb-3;
   @apply uppercase tracking-wider;
-}
-
-@keyframes glow-pulse {
-  0% {
-    text-shadow: 
-      0 0 8px #4a9eff,
-      0 0 16px #4a9eff,
-      0 0 24px #4a9eff,
-      0 0 32px #4a9eff,
-      0 0 48px #4a9eff,
-      0 0 64px #4a9eff;
-  }
-  100% {
-    text-shadow: 
-      0 0 12px #4a9eff,
-      0 0 24px #4a9eff,
-      0 0 36px #4a9eff,
-      0 0 48px #4a9eff,
-      0 0 72px #4a9eff,
-      0 0 96px #4a9eff;
-  }
-}
-
-@keyframes cursor-blink {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }
 
 .footer__advanced__list {

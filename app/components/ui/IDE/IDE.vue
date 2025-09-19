@@ -1,30 +1,29 @@
 <template>
   <div :class="styles.ide">
-    <!-- Заголовок -->
+    <!-- Заголовок с tabs -->
     <div :class="styles.header">
       <div :class="styles.header__content">
         <h1 :class="styles.header__title">УДАЛЕННАЯ РАЗРАБОТКА</h1>
         <p :class="styles.header__subtitle">Настройка IDE для работы с проектом</p>
       </div>
-      <div :class="styles.header__accent"></div>
-    </div>
-
-    <!-- Табы для IDE -->
-    <div :class="styles.tabs">
-      <button 
-        :class="[styles.tabs__item, { [styles['tabs__item--active']]: activeIDE === 'vscode' }]"
-        @click="activeIDE = 'vscode'"
-      >
-        <Icon name="simple-icons:visualstudiocode" />
-        VS CODE
-      </button>
-      <button 
-        :class="[styles.tabs__item, { [styles['tabs__item--active']]: activeIDE === 'webstorm' }]"
-        @click="activeIDE = 'webstorm'"
-      >
-        <Icon name="simple-icons:jetbrains" />
-        WEBSTORM
-      </button>
+      
+      <!-- Табы для IDE -->
+      <div :class="styles.tabs">
+        <button 
+          :class="[styles.tabs__item, { [styles['tabs__item--active']]: activeIDE === 'vscode' }]"
+          @click="activeIDE = 'vscode'"
+        >
+          <Icon name="simple-icons:visualstudiocode" />
+          VS CODE
+        </button>
+        <button 
+          :class="[styles.tabs__item, { [styles['tabs__item--active']]: activeIDE === 'webstorm' }]"
+          @click="activeIDE = 'webstorm'"
+        >
+          <Icon name="simple-icons:jetbrains" />
+          WEBSTORM
+        </button>
+      </div>
     </div>
 
     <!-- Настройки пользователя -->
