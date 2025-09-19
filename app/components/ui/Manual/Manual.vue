@@ -42,11 +42,11 @@
           <input 
             :id="setting.id"
             v-model="settingsData[setting.id]"
+            :autocomplete="setting.autocomplete"
             :class="styles.settings__input"
             :placeholder="setting.placeholder"
             :type="setting.type"
-            :autocomplete="setting.autocomplete"
-          />
+          >
         </div>
       </div>
     </div>
@@ -91,7 +91,14 @@
           
           <!-- Инструкции -->
           <div :class="styles.instructions">
-            <p v-for="instruction in step.instructions" :key="instruction" v-html="instruction"></p>
+            <p v-for="(instruction, index) in step.instructions" :key="index">
+              <template v-if="typeof instruction === 'object'">
+                {{ instruction.text }}<code :class="styles.code">{{ instruction.code }}</code>
+              </template>
+              <template v-else>
+                {{ instruction }}
+              </template>
+            </p>
             
             <!-- Конфигурационный блок -->
             <div v-if="step.configContent" :class="styles.config">
@@ -100,7 +107,14 @@
             
             <!-- Список настроек -->
             <ul v-if="step.configList" :class="styles.config__list">
-              <li v-for="item in step.configList" :key="item" v-html="item"></li>
+              <li v-for="(item, index) in step.configList" :key="index">
+                <template v-if="typeof item === 'object'">
+                  <code :class="styles.code">{{ item.code }}</code>{{ item.text }}
+                </template>
+                <template v-else>
+                  {{ item }}
+                </template>
+              </li>
             </ul>
           </div>
         </div>

@@ -39,8 +39,8 @@ export const sshConfig = {
       type: 'command',
       command: 'ssh-keygen',
       instructions: [
-        'Введите имя файла: <span class="code">id_rsa_tar</span>',
-        'Нажмите Enter для пустого пароля'
+        { text: 'Введите имя файла: ', code: 'id_rsa_tar' },
+        { text: 'Нажмите Enter для пустого пароля' }
       ]
     },
     {
@@ -73,9 +73,9 @@ export const sshConfig = {
     IdentitiesOnly yes`
       },
       configList: [
-        '<span class="code">Host</span> - выберите любое имя (например, "МойГит", "Работа")',
-        '<span class="code">IdentityFile</span> - путь к вашему приватному ключу',
-        'Сохраните файл и проверьте: <span class="code">ssh -T Tar_Git</span>'
+        { text: ' - выберите любое имя (например, "МойГит", "Работа")', code: 'Host' },
+        { text: ' - путь к вашему приватному ключу', code: 'IdentityFile' },
+        { text: 'Сохраните файл и проверьте: ', code: 'ssh -T Tar_Git' }
       ]
     },
     {

@@ -75,7 +75,7 @@ export const ideConfig = {
       number: '05',
       title: 'ЗАПУСК В ПЕСОЧНИЦЕ',
       type: 'command',
-      command: (activeTab, settingsData) => {
+      command: (activeTab) => {
         return activeTab === 'vscode' ? 'npm run serve' : 'npm run dev'
       },
       instructions: [
@@ -86,7 +86,7 @@ export const ideConfig = {
       number: '06',
       title: 'НАСТРОЙКА КОНФИГУРАЦИИ',
       type: 'command',
-      command: (activeTab, settingsData) => {
+      command: (activeTab) => {
         return activeTab === 'vscode' ? 'code configuration.js' : 'webstorm configuration.js'
       },
       commandLabel: 'ОТКРЫТЬ ФАЙЛ',
@@ -111,7 +111,7 @@ api_url: "http://78.142.221.162:3000/api/booster",`,
       command: 'npm run build',
       instructions: [
         'Собираем проект для деплоя в тестовую песочницу',
-        'Адрес песочницы: <span class="code">http://78.142.221.162:3000/test/{{ username || \'username\' }}#</span>'
+        { text: 'Адрес песочницы: ', code: 'http://78.142.221.162:3000/test/{{ username || \'username\' }}#' }
       ]
     },
     {
