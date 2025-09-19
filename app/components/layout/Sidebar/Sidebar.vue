@@ -46,10 +46,10 @@ const handleMoreClick = (item) => {
         v-for="item in menuItems"
         :key="item.id"
         :icon="item.icon"
-        :text="item.text"
-        :more-text="item.moreText"
-        :more-icon="item.moreIcon"
         :is-active="props.activeItem === item.id"
+        :more-icon="item.moreIcon"
+        :more-text="item.moreText"
+        :text="item.text"
         @click="handleItemClick(item)"
         @more-click="handleMoreClick(item)"
       />
@@ -73,7 +73,7 @@ const handleMoreClick = (item) => {
     .left-bar__borderA {
       @apply absolute top-0 left-0;
       @apply w-8 h-full;
-      @apply bg-[var(--ag-gray-primary)];
+      @apply bg-[var(--ag-black-secondary)];
     }
   }
 }

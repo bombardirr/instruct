@@ -6,7 +6,6 @@
   height: 100%;
   padding: 1.5rem;
   overflow-y: auto;
-  background-color: var(--ag-black-tertiary);
   color: var(--ag-white-primary);
   font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
 }
