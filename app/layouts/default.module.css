@@ -2,27 +2,20 @@
 
 .layout {
   @apply relative;
-  @apply w-full;
-  @apply min-h-screen;
+  @apply w-full min-h-screen;
   @apply bg-[var(--ag-black-primary)];
 }
 
 .layout__wrapper {
   @apply relative;
-  @apply flex;
-  @apply flex-col;
-  @apply justify-between;
-  @apply max-w-[1920px];
-  @apply min-h-screen;
+  @apply flex flex-col justify-between;
+  @apply max-w-[1920px] min-h-screen;
   @apply mx-auto;
 }
 
 .layout__main {
   @apply relative;
-  @apply flex-1;
-  @apply flex;
-  @apply justify-center;
-  @apply items-center;
+  @apply flex-1 flex justify-center items-center;
   @apply p-8;
   @apply bg-[var(--ag-black-primary)];
 }
