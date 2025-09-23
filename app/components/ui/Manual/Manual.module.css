@@ -9,12 +9,11 @@
     & .manual__sidebar {
         @apply flex flex-col;
         @apply w-fit;
-        @apply p-4;
-        @apply bg-[var(--ag-gray-primary)];
+        @apply p-4 pr-0;
         @apply [clip-path:polygon(0_0,calc(100%_-_16px)_0,100%_16px,100%_100%,16px_100%,0_calc(100%_-_16px))];
 
         & .tabs__wrapper {
-            @apply sticky top-4;
+            @apply sticky top-8;
             @apply flex flex-col;
 
             & .tabs {
@@ -25,17 +24,13 @@
                     @apply flex items-center gap-3;
                     @apply w-fit;
                     @apply px-4 py-3;
-                    @apply bg-[var(--ag-gray-secondary)];
-                    @apply text-sm font-bold text-[var(--ag-gray-light)] uppercase tracking-wider;
+                    @apply text-sm font-bold text-[var(--ag-gray-light)] hover:text-[var(--ag-green-light)] uppercase tracking-wider;
                     @apply [clip-path:polygon(0_0,calc(100%_-_8px)_0,100%_8px,100%_100%,8px_100%,0_calc(100%_-_8px))];
                     @apply transition-all duration-300;
                     @apply cursor-pointer;
-                    @apply hover:bg-[var(--ag-gray-lighter)];
 
                     &.tabs__item--active {
-                        @apply bg-[var(--ag-gray-tertiary)];
-                        @apply text-[var(--ag-white-primary)];
-                        @apply hover:bg-[var(--ag-gray-light)];
+                        @apply text-[var(--ag-green-primary)];
                     }
                 }
             }
@@ -46,10 +41,10 @@
         @apply flex-1;
 
         & .header {
-            @apply relative;
+            @apply sticky top-4 z-10;
             @apply flex justify-between items-center;
             @apply mb-8 p-6;
-            @apply bg-[var(--ag-gray-primary)];
+            @apply backdrop-blur-xl;
             @apply [clip-path:polygon(0_0,calc(100%_-_20px)_0,100%_20px,100%_100%,20px_100%,0_calc(100%_-_20px))];
             @apply overflow-hidden;
 
@@ -64,7 +59,7 @@
             }
 
             & .header__subtitle {
-                @apply text-sm text-[var(--ag-gray-light)] uppercase tracking-widest;
+                @apply text-sm text-[var(--ag-green-primary)] uppercase tracking-widest;
             }
         }
 
@@ -79,18 +74,19 @@
             }
 
             & .settings__title {
-                @apply text-lg font-bold text-[var(--ag-white-primary)] uppercase tracking-wider;
+                @apply text-xl font-bold text-[var(--ag-white-primary)] uppercase tracking-wider;
             }
 
             & .settings__disclaimer {
+                @apply w-fit;
                 @apply px-3 py-1;
                 @apply text-center;
                 @apply bg-[var(--ag-gray-secondary)];
                 @apply [clip-path:polygon(0_0,calc(100%_-_6px)_0,100%_6px,100%_100%,6px_100%,0_calc(100%_-_6px))];
 
                 p {
-                    @apply flex items-center;
-                    @apply text-xs font-medium text-[var(--ag-gray-lighter)];
+                    @apply flex items-center justify-start gap-2;
+                    @apply text-xs font-medium text-[var(--ag-green-primary)];
                 }
             }
 
@@ -111,7 +107,7 @@
                     0 0 16px #4a9eff,
                     0 0 24px #4a9eff,
                     0 0 32px #4a9eff;
-                    animation: glow-pulse-soft 0.8s ease-in-out infinite alternate;
+                    animation: glow-pulse 0.8s ease-in-out infinite alternate;
                 }
             }
 
@@ -134,7 +130,6 @@
             & .settings__input {
                 @apply px-3 py-2;
                 @apply rounded;
-                @apply border border-[var(--ag-gray-tertiary)];
                 @apply bg-[var(--ag-black-tertiary)];
                 @apply text-sm font-mono text-[var(--ag-white-primary)];
                 @apply focus:border-[var(--ag-gray-light)] focus:outline-none;
@@ -161,7 +156,6 @@
                 @apply flex items-center gap-4;
                 @apply p-4;
                 @apply bg-[var(--ag-gray-primary)];
-                @apply border-b border-[var(--ag-gray-secondary)];
             }
 
             & .step__number {
@@ -224,24 +218,6 @@
             }
         }
 
-        @keyframes glow-pulse-soft {
-            0% {
-                text-shadow: 0 0 4px #4a9eff,
-                0 0 8px #4a9eff,
-                0 0 12px #4a9eff,
-                0 0 16px #4a9eff,
-                0 0 24px #4a9eff,
-                0 0 32px #4a9eff;
-            }
-            100% {
-                text-shadow: 0 0 6px #4a9eff,
-                0 0 12px #4a9eff,
-                0 0 18px #4a9eff,
-                0 0 24px #4a9eff,
-                0 0 36px #4a9eff,
-                0 0 48px #4a9eff;
-            }
-        }
 
         & .command {
             @apply overflow-hidden;
@@ -252,21 +228,25 @@
             & .command__header {
                 @apply flex items-center justify-between;
                 @apply px-4 py-2;
-                @apply bg-[var(--ag-gray-secondary)];
-                @apply border-b border-[var(--ag-gray-tertiary)];
+                @apply bg-[var(--ag-black-primary)];
             }
 
             & .command__label {
                 @apply text-xs font-bold text-[var(--ag-white-primary)] uppercase tracking-widest;
             }
 
+            & .command__buttons {
+                @apply flex items-center justify-start gap-1;
+                @apply text-[var(--ag-green-primary)];
+            }
+
             & .command__code {
                 @apply relative;
                 @apply px-4 py-3;
                 @apply min-h-[45px];
-                @apply text-sm font-mono text-[var(--ag-white-primary)];
+                @apply text-sm font-mono text-[var(--ag-green-primary)];
                 @apply break-all;
-                @apply bg-[var(--ag-black-tertiary)];
+                @apply bg-[var(--ag-gray-secondary)];
                 @apply border-t border-[var(--ag-gray-tertiary)];
 
                 &::after {
@@ -295,15 +275,15 @@
 
             &.button--copy {
                 @apply bg-[var(--ag-gray-light)];
-                @apply text-[var(--ag-white-primary)];
+                @apply text-[var(--ag-green-primary)];
                 @apply hover:bg-[var(--ag-gray-lighter)];
             }
 
             &.button--primary {
                 @apply px-6 py-3;
-                @apply bg-[var(--ag-white-primary)];
-                @apply text-[var(--ag-black-primary)];
-                @apply hover:bg-[var(--ag-white-secondary)];
+                @apply bg-[var(--ag-gray-light)];
+                @apply text-[var(--ag-green-primary)];
+                @apply hover:bg-[var(--ag-gray-lighter)];
             }
         }
 

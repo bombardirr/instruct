@@ -54,7 +54,18 @@
             <!-- Команда -->
             <div v-if="step.type === 'command'" :class="styles.command">
               <div :class="styles.command__header">
-                <span :class="styles.command__label">{{ step.commandLabel || 'ВЫПОЛНИТЬ' }}</span>
+                <!--                <span :class="styles.command__label">{{ step.commandLabel || 'ВЫПОЛНИТЬ' }}</span>-->
+                <div :class="styles.command__buttons">
+                  <div>
+                    <Icon name="line-md:menu-to-close-transition"/>
+                  </div>
+                  <div>
+                    <Icon name="line-md:cog-loop"/>
+                  </div>
+                  <div>
+                    <Icon name="line-md:minus"/>
+                  </div>
+                </div>
                 <button
                     :class="[styles.button, styles['button--copy']]"
                     @click="copyCommand(getCommandText(step))"

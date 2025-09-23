@@ -7,11 +7,11 @@ import styles from './default.module.css'
 <template>
   <div :class="styles.layout">
     <div :class="styles.layout__wrapper">
-      <Header/>
+      <!--      <Header/>-->
       <main :class="styles.layout__main">
         <slot/>
       </main>
-      <Footer/>
+      <!--      <Footer/>-->
     </div>
   </div>
 </template>

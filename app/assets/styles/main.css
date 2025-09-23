@@ -1,25 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --ag-black-primary: #000000;
-  --ag-black-secondary: #0a0a0a;
-  --ag-black-tertiary: #111111;
-  --ag-gray-primary: #1a1a1a;
-  --ag-gray-secondary: #2a2a2a;
-  --ag-gray-tertiary: #3a3a3a;
-  --ag-gray-light: #4a4a4a;
-  --ag-gray-lighter: #6a6a6a;
-  --ag-white-primary: #f8f8f8;
-  --ag-white-secondary: #e8e8e8;
-  --ag-white-tertiary: #d8d8d8;
+    --ag-black-primary: #000000;
+    --ag-black-secondary: #0a0a0a;
+    --ag-black-tertiary: #111111;
+    --ag-gray-primary: #1a1a1a;
+    --ag-gray-secondary: #2a2a2a;
+    --ag-gray-tertiary: #3a3a3a;
+    --ag-gray-light: #4a4a4a;
+    --ag-gray-lighter: #6a6a6a;
+    --ag-green-primary: #05df72;
+    --ag-green-light: #5CC58A;
+    --ag-white-primary: #f8f8f8;
+    --ag-white-secondary: #e8e8e8;
+    --ag-white-tertiary: #d8d8d8;
 }
 
 * {
-  @apply box-border;
+    @apply box-border;
 }
 
 html, body {
-  @apply m-0 p-0;
-  @apply bg-[var(--ag-black-primary)] text-[var(--ag-white-primary)];
-  @apply font-mono;
+    @apply m-0 p-0;
+    @apply bg-[var(--ag-black-primary)] text-[var(--ag-white-primary)];
+    @apply font-mono;
 }

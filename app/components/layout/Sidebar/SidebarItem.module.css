@@ -47,8 +47,11 @@
   }
 
   &.item--active {
-    @apply bg-[var(--ag-gray-primary)];
     @apply translate-x-2;
+
+    .item__text {
+      @apply text-[var(--ag-green-primary)];
+    }
 
     .item__more {
       @apply opacity-100 scale-100;
