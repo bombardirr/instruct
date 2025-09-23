@@ -42,17 +42,17 @@ const handleMoreClick = (item) => {
 <template>
   <aside :class="styles.sidebar">
     <div :class="styles.sidebar__container">
-      <div :class="styles.sidebar__border"/>
+      <!--      <div :class="styles.sidebar__border"/>-->
       <SidebarItem
-        v-for="item in menuItems"
-        :key="item.id"
-        :icon="item.icon"
-        :is-active="props.activeItem === item.id"
-        :more-icon="item.moreIcon"
-        :more-text="item.moreText"
-        :text="item.text"
-        @click="handleItemClick(item)"
-        @more-click="handleMoreClick(item)"
+          v-for="item in menuItems"
+          :key="item.id"
+          :icon="item.icon"
+          :is-active="props.activeItem === item.id"
+          :more-icon="item.moreIcon"
+          :more-text="item.moreText"
+          :text="item.text"
+          @click="handleItemClick(item)"
+          @more-click="handleMoreClick(item)"
       />
     </div>
   </aside>
