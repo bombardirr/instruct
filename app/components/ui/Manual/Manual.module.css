@@ -116,10 +116,11 @@
         }
 
         & .content {
-            @apply flex flex-wrap justify-evenly items-center gap-6;
+            @apply flex flex-wrap justify-center items-center gap-6;
+            @apply mx-auto;
 
             & .step {
-                @apply w-[30%] h-[30vh];
+                @apply w-[30%] min-w-[367px] h-[30vh];
                 @apply bg-[var(--ag-gray-primary)]/50;
                 @apply [clip-path:var(--clip-path-step)] hover:border-[var(--ag-gray-tertiary)] transition-all duration-300;
                 @apply overflow-auto;
