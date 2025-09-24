@@ -4,7 +4,7 @@
   @apply flex justify-start items-center gap-2;
   @apply cursor-pointer;
   @apply transform translate-x-0;
-  @apply [clip-path:polygon(0_0,calc(100%_-_8px)_0,100%_8px,100%_100%,8px_100%,0_calc(100%_-_8px))];
+  @apply [clip-path:var(--clip-path-sidebar-item)];
   @apply transition-all duration-300;
 
   &:hover {

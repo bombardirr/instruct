@@ -14,6 +14,23 @@
     --ag-white-primary: #f8f8f8;
     --ag-white-secondary: #e8e8e8;
     --ag-white-tertiary: #d8d8d8;
+
+    /* Clip-path variables */
+    --clip-path-home: polygon(20px 0, calc(100% - 20px) 0, 100% 20px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 20px 100%, 0 calc(100% - 20px), 0 20px);
+    --clip-path-tab: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    --clip-path-header: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+    --clip-path-settings: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    --clip-path-disclaimer: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+    --clip-path-step: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+    --clip-path-step-number: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    --clip-path-command: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    --clip-path-button: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+    --clip-path-code: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
+    --clip-path-config: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    --clip-path-footer-toggle: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    --clip-path-footer-advanced: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    --clip-path-footer-item: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+    --clip-path-sidebar-item: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
 }
 
 * {
@@ -24,4 +41,57 @@ html, body {
     @apply m-0 p-0;
     @apply bg-[var(--ag-black-primary)] text-[var(--ag-white-primary)];
     @apply font-mono;
+}
+
+/* ==========================================================================
+   SCROLLBAR STYLES
+   ========================================================================== */
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--ag-black-secondary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--ag-gray-tertiary);
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--ag-gray-light);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: var(--ag-green-primary);
+}
+
+::-webkit-scrollbar-corner {
+    background: var(--ag-black-secondary);
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--ag-gray-tertiary) var(--ag-black-secondary);
+}
+
+/* Custom scrollbar for specific elements */
+.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--ag-green-primary) var(--ag-gray-primary);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--ag-green-primary);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--ag-green-light);
 }

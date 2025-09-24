@@ -7,34 +7,29 @@
           <h1 :class="styles.header__title">{{ config.title }}</h1>
           <p :class="styles.header__subtitle">{{ config.subtitle }}</p>
         </div>
-      </div>
 
-      <!-- Настройки пользователя -->
-      <div :class="styles.settings">
-        <div :class="styles.settings__header">
-          <h3 :class="styles.settings__title">НАСТРОЙКИ</h3>
-          <div :class="styles.settings__disclaimer">
+        <!-- Настройки пользователя -->
+        <div :class="styles.header__settings">
+          <div :class="styles.header__settings_disclaimer">
             <p>
               <span>Чтобы финальный код подстроить под вас </span>
               <span :class="styles.settings__smiley" data-smiley="(◕‿◕)">(◕‿◕)</span>
             </p>
           </div>
-        </div>
-        <div :class="styles.settings__grid">
-          <div
-              v-for="setting in config.settings"
-              :key="setting.id"
-              :class="styles.settings__item"
-          >
-            <label :class="styles.settings__label" :for="setting.id">{{ setting.label }}</label>
-            <input
-                :id="setting.id"
-                v-model="settingsData[setting.id]"
-                :autocomplete="setting.autocomplete"
-                :class="styles.settings__input"
-                :placeholder="setting.placeholder"
-                :type="setting.type"
+          <div :class="styles.header__settings_items">
+            <div
+                v-for="setting in config.settings"
+                :key="setting.id"
+                :class="styles.header__settings_item"
             >
+              <input
+                  :id="setting.id"
+                  v-model="settingsData[setting.id]"
+                  :autocomplete="setting.autocomplete"
+                  :placeholder="setting.placeholder"
+                  :type="setting.type"
+              >
+            </div>
           </div>
         </div>
       </div>
@@ -54,7 +49,6 @@
             <!-- Команда -->
             <div v-if="step.type === 'command'" :class="styles.command">
               <div :class="styles.command__header">
-                <!--                <span :class="styles.command__label">{{ step.commandLabel || 'ВЫПОЛНИТЬ' }}</span>-->
                 <div :class="styles.command__buttons">
                   <div>
                     <Icon name="line-md:menu-to-close-transition"/>
