@@ -1,46 +1,45 @@
 @import "tailwindcss";
 
-.step {
-    @apply w-[30%] min-w-[367px] h-[30vh];
-    @apply bg-[var(--ag-gray-primary)]/50;
-    @apply [clip-path:var(--clip-path-step)] hover:border-[var(--ag-gray-tertiary)] transition-all duration-300;
-    @apply overflow-auto;
+.scrollable {
     scrollbar-width: thin;
-    scrollbar-color: var(--ag-green-primary) var(--ag-gray-primary);
+    scrollbar-color: var(--ag-green-primary) color-mix(in srgb, var(--ag-gray-primary) 20%, transparent);
 
     &::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
+        @apply w-2 h-2;
     }
 
     &::-webkit-scrollbar-track {
-        background: var(--ag-gray-primary);
-        border-radius: 4px;
+        @apply bg-[var(--ag-gray-primary)];
+        @apply rounded-md;
     }
 
     &::-webkit-scrollbar-thumb {
-        background: var(--ag-green-primary);
-        border-radius: 4px;
-        transition: background 0.2s ease;
+        @apply bg-[var(--ag-green-primary)];
+        @apply rounded-md;
+        @apply transition-all duration-200;
     }
 
     &::-webkit-scrollbar-thumb:hover {
-        background: var(--ag-green-light);
+        @apply bg-[var(--ag-green-light)];
     }
+}
+
+.step {
+    @apply w-[30%] min-w-[367px] h-[30vh];
+    @apply rounded-lg;
+    @apply overflow-auto;
+    background-color: color-mix(in srgb, var(--ag-gray-primary) 20%, transparent);
 
     & .step__header {
         @apply flex items-center gap-4;
         @apply p-4;
-        @apply bg-[var(--ag-gray-primary)];
     }
 
     & .step__number {
         @apply relative;
         @apply flex items-center justify-center;
         @apply w-12 h-12;
-        @apply bg-[var(--ag-gray-tertiary)];
         @apply text-lg font-bold text-[var(--ag-white-primary)];
-        @apply [clip-path:var(--clip-path-step-number)] transition-all duration-300;
         @apply cursor-pointer;
 
         &::before {
@@ -72,18 +71,40 @@
 
         & .command {
             @apply bg-[var(--ag-gray-primary)];
-            @apply [clip-path:var(--clip-path-command)] shadow-lg;
+            @apply rounded-md;
             @apply overflow-hidden;
 
             & .command__header {
+                @apply relative;
                 @apply flex items-center justify-between;
                 @apply px-4 py-2;
                 @apply bg-[var(--ag-black-primary)];
-            }
 
-            & .command__buttons {
-                @apply flex items-center justify-start gap-1;
-                @apply text-[var(--ag-green-primary)];
+                & .command__buttons {
+                    @apply flex items-center justify-start gap-1;
+                    @apply text-[var(--ag-green-primary)];
+                }
+
+                & .button {
+                    @apply absolute top-2 right-4;
+                    @apply flex items-center gap-2;
+                    @apply px-1 py-1;
+                    @apply text-xs font-bold uppercase tracking-wider;
+                    @apply cursor-pointer;
+
+                    &.button--copy {
+                        @apply text-[var(--ag-green-primary)];
+                        @apply transition-all duration-150;
+                        @apply rounded-md;
+                        box-sizing: border-box;
+                        border: 1px solid transparent;
+                        border-bottom: 1px solid white;
+                        
+                        &:hover {
+                            animation: border-rotate 0.6s ease-in-out;
+                        }
+                    }
+                }
             }
 
             & .command__code {
@@ -91,8 +112,6 @@
                 @apply px-4 py-3;
                 @apply min-h-[45px];
                 @apply text-sm font-mono text-[var(--ag-green-primary)] break-all;
-                @apply bg-[var(--ag-gray-secondary)];
-                @apply border-t border-[var(--ag-gray-tertiary)];
 
                 &::after {
                     content: '_';
@@ -105,19 +124,11 @@
 
         & .button {
             @apply flex items-center gap-2;
-            @apply px-3 py-2;
+            @apply px-6 py-3;
             @apply text-xs font-bold uppercase tracking-wider;
-            @apply [clip-path:var(--clip-path-button)] active:scale-95 transition-all duration-200;
             @apply cursor-pointer;
 
-            &.button--copy {
-                @apply bg-[var(--ag-gray-light)];
-                @apply text-[var(--ag-green-primary)];
-                @apply hover:bg-[var(--ag-gray-lighter)];
-            }
-
             &.button--primary {
-                @apply px-6 py-3;
                 @apply bg-[var(--ag-gray-light)];
                 @apply text-[var(--ag-green-primary)];
                 @apply hover:bg-[var(--ag-gray-lighter)];
@@ -141,28 +152,6 @@
             @apply bg-[var(--ag-gray-primary)];
             @apply [clip-path:var(--clip-path-config)] shadow-md;
             @apply overflow-x-auto;
-            scrollbar-width: thin;
-            scrollbar-color: var(--ag-green-primary) var(--ag-gray-primary);
-
-            &::-webkit-scrollbar {
-                width: 8px;
-                height: 8px;
-            }
-
-            &::-webkit-scrollbar-track {
-                background: var(--ag-gray-primary);
-                border-radius: 4px;
-            }
-
-            &::-webkit-scrollbar-thumb {
-                background: var(--ag-green-primary);
-                border-radius: 4px;
-                transition: background 0.2s ease;
-            }
-
-            &::-webkit-scrollbar-thumb:hover {
-                background: var(--ag-green-light);
-            }
 
             pre {
                 @apply text-sm font-mono text-[var(--ag-white-primary)];
@@ -211,5 +200,38 @@
     }
     100% {
         opacity: 1;
+    }
+}
+
+@keyframes border-rotate {
+    0% {
+        border-left: 1px solid transparent;
+        border-top: 1px solid transparent;
+        border-right: 1px solid transparent;
+        border-bottom: 1px solid white;
+    }
+    25% {
+        border-left: 1px solid white;
+        border-top: 1px solid transparent;
+        border-right: 1px solid transparent;
+        border-bottom: 1px solid transparent;
+    }
+    50% {
+        border-left: 1px solid transparent;
+        border-top: 1px solid white;
+        border-right: 1px solid transparent;
+        border-bottom: 1px solid transparent;
+    }
+    75% {
+        border-left: 1px solid transparent;
+        border-top: 1px solid transparent;
+        border-right: 1px solid white;
+        border-bottom: 1px solid transparent;
+    }
+    100% {
+        border-left: 1px solid transparent;
+        border-top: 1px solid transparent;
+        border-right: 1px solid transparent;
+        border-bottom: 1px solid white;
     }
 }

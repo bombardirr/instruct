@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 :root {
-    --ag-black-primary: #000000;
-    --ag-black-secondary: #0a0a0a;
-    --ag-black-tertiary: #111111;
-    --ag-gray-primary: #1a1a1a;
-    --ag-gray-secondary: #2a2a2a;
-    --ag-gray-tertiary: #3a3a3a;
-    --ag-gray-light: #4a4a4a;
-    --ag-gray-lighter: #6a6a6a;
-    --ag-green-primary: #05df72;
-    --ag-green-light: #5CC58A;
-    --ag-white-primary: #f8f8f8;
-    --ag-white-secondary: #e8e8e8;
-    --ag-white-tertiary: #d8d8d8;
+    --ag-black-primary: rgba(0, 0, 0, 1);
+    --ag-black-secondary: rgba(10, 10, 10, 1);
+    --ag-black-tertiary: rgba(17, 17, 17, 1);
+    --ag-gray-primary: rgba(26, 26, 26, 1);
+    --ag-gray-secondary: rgba(42, 42, 42, 1);
+    --ag-gray-tertiary: rgba(58, 58, 58, 1);
+    --ag-gray-light: rgba(74, 74, 74, 1);
+    --ag-gray-lighter: rgba(106, 106, 106, 1);
+    --ag-green-primary: rgba(5, 223, 114, 1);
+    --ag-green-lightыщьу: rgba(92, 197, 138, 1);
+    --ag-white-primary: rgba(248, 248, 248, 1);
+    --ag-white-secondary: rgba(232, 232, 232, 1);
+    --ag-white-tertiary: rgba(216, 216, 216, 1);
 
     /* Clip-path variables */
     --clip-path-home: polygon(20px 0, calc(100% - 20px) 0, 100% 20px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 20px 100%, 0 calc(100% - 20px), 0 20px);

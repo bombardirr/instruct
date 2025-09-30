@@ -25,7 +25,6 @@
                     @apply w-fit;
                     @apply px-4 py-3;
                     @apply text-sm font-bold text-[var(--ag-gray-light)] hover:text-[var(--ag-green-light)] uppercase tracking-wider;
-                    @apply [clip-path:var(--clip-path-tab)] transition-all duration-300;
                     @apply cursor-pointer;
 
                     &.tabs__item--active {

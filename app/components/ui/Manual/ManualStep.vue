@@ -1,5 +1,5 @@
 <template>
-  <div :class="styles.step">
+  <div :class="[styles.step, styles.scrollable]">
     <div :class="styles.step__header">
       <div :class="styles.step__number" :data-number="step.number">{{ step.number }}</div>
       <h3 :class="styles.step__title">{{ step.title }}</h3>
@@ -53,7 +53,7 @@
         </p>
 
         <!-- Конфигурационный блок -->
-        <div v-if="step.configContent" :class="styles.config">
+        <div v-if="step.configContent" :class="[styles.config, styles.scrollable]">
           <pre><code>{{ getConfigContent() }}</code></pre>
         </div>
 
