@@ -1,0 +1,215 @@
+@import "tailwindcss";
+
+.step {
+    @apply w-[30%] min-w-[367px] h-[30vh];
+    @apply bg-[var(--ag-gray-primary)]/50;
+    @apply [clip-path:var(--clip-path-step)] hover:border-[var(--ag-gray-tertiary)] transition-all duration-300;
+    @apply overflow-auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--ag-green-primary) var(--ag-gray-primary);
+
+    &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: var(--ag-gray-primary);
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--ag-green-primary);
+        border-radius: 4px;
+        transition: background 0.2s ease;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: var(--ag-green-light);
+    }
+
+    & .step__header {
+        @apply flex items-center gap-4;
+        @apply p-4;
+        @apply bg-[var(--ag-gray-primary)];
+    }
+
+    & .step__number {
+        @apply relative;
+        @apply flex items-center justify-center;
+        @apply w-12 h-12;
+        @apply bg-[var(--ag-gray-tertiary)];
+        @apply text-lg font-bold text-[var(--ag-white-primary)];
+        @apply [clip-path:var(--clip-path-step-number)] transition-all duration-300;
+        @apply cursor-pointer;
+
+        &::before {
+            content: attr(data-number);
+            @apply absolute inset-0;
+            @apply flex items-center justify-center;
+            @apply text-lg font-bold text-[var(--ag-white-primary)];
+            @apply opacity-0 transition-opacity duration-300;
+            text-shadow: 0 0 8px #4a9eff,
+                        0 0 16px #4a9eff,
+                        0 0 24px #4a9eff,
+                        0 0 32px #4a9eff,
+                        0 0 48px #4a9eff,
+                        0 0 64px #4a9eff;
+            animation: glow-pulse 0.8s ease-in-out infinite alternate;
+        }
+    }
+
+    &:hover .step__number::before {
+        @apply opacity-100;
+    }
+
+    & .step__title {
+        @apply text-xl font-bold text-[var(--ag-white-primary)] uppercase tracking-wider;
+    }
+
+    & .step__body {
+        @apply p-6 space-y-4;
+
+        & .command {
+            @apply bg-[var(--ag-gray-primary)];
+            @apply [clip-path:var(--clip-path-command)] shadow-lg;
+            @apply overflow-hidden;
+
+            & .command__header {
+                @apply flex items-center justify-between;
+                @apply px-4 py-2;
+                @apply bg-[var(--ag-black-primary)];
+            }
+
+            & .command__buttons {
+                @apply flex items-center justify-start gap-1;
+                @apply text-[var(--ag-green-primary)];
+            }
+
+            & .command__code {
+                @apply relative;
+                @apply px-4 py-3;
+                @apply min-h-[45px];
+                @apply text-sm font-mono text-[var(--ag-green-primary)] break-all;
+                @apply bg-[var(--ag-gray-secondary)];
+                @apply border-t border-[var(--ag-gray-tertiary)];
+
+                &::after {
+                    content: '_';
+                    @apply absolute;
+                    @apply font-mono font-bold text-[var(--ag-white-primary)];
+                    @apply opacity-0 transition-opacity duration-300;
+                }
+            }
+        }
+
+        & .button {
+            @apply flex items-center gap-2;
+            @apply px-3 py-2;
+            @apply text-xs font-bold uppercase tracking-wider;
+            @apply [clip-path:var(--clip-path-button)] active:scale-95 transition-all duration-200;
+            @apply cursor-pointer;
+
+            &.button--copy {
+                @apply bg-[var(--ag-gray-light)];
+                @apply text-[var(--ag-green-primary)];
+                @apply hover:bg-[var(--ag-gray-lighter)];
+            }
+
+            &.button--primary {
+                @apply px-6 py-3;
+                @apply bg-[var(--ag-gray-light)];
+                @apply text-[var(--ag-green-primary)];
+                @apply hover:bg-[var(--ag-gray-lighter)];
+            }
+        }
+
+        & .instructions {
+            @apply space-y-2;
+            @apply text-sm text-[var(--ag-white-secondary)];
+        }
+
+        & .code {
+            @apply px-2 py-1;
+            @apply bg-[var(--ag-gray-primary)];
+            @apply text-xs font-mono text-[var(--ag-white-primary)];
+            @apply [clip-path:var(--clip-path-code)];
+        }
+
+        & .config {
+            @apply mt-3 p-4;
+            @apply bg-[var(--ag-gray-primary)];
+            @apply [clip-path:var(--clip-path-config)] shadow-md;
+            @apply overflow-x-auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--ag-green-primary) var(--ag-gray-primary);
+
+            &::-webkit-scrollbar {
+                width: 8px;
+                height: 8px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: var(--ag-gray-primary);
+                border-radius: 4px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: var(--ag-green-primary);
+                border-radius: 4px;
+                transition: background 0.2s ease;
+            }
+
+            &::-webkit-scrollbar-thumb:hover {
+                background: var(--ag-green-light);
+            }
+
+            pre {
+                @apply text-sm font-mono text-[var(--ag-white-primary)];
+                @apply whitespace-pre;
+            }
+
+            & .config__list {
+                @apply mt-3 space-y-2;
+                @apply text-sm;
+
+                li {
+                    @apply flex items-start gap-2;
+                }
+            }
+        }
+    }
+
+    &:hover .command__code::after {
+        @apply opacity-100;
+        animation: cursor-blink 0.8s ease-in-out infinite alternate;
+    }
+}
+
+@keyframes glow-pulse {
+    0% {
+        text-shadow: 0 0 8px #4a9eff,
+                    0 0 16px #4a9eff,
+                    0 0 24px #4a9eff,
+                    0 0 32px #4a9eff,
+                    0 0 48px #4a9eff,
+                    0 0 64px #4a9eff;
+    }
+    100% {
+        text-shadow: 0 0 12px #4a9eff,
+                    0 0 24px #4a9eff,
+                    0 0 36px #4a9eff,
+                    0 0 48px #4a9eff,
+                    0 0 72px #4a9eff,
+                    0 0 96px #4a9eff;
+    }
+}
+
+@keyframes cursor-blink {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
