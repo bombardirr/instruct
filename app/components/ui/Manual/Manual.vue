@@ -185,14 +185,6 @@ const animateCopy = async (command) => {
   isAnimating.value = false
 }
 
-const getDisplayText = (command) => {
-  if (isAnimating.value && currentCommand.value === command) {
-    return animatedText.value
-  }
-  return command
-}
-
-
 const handleButtonAction = (action) => {
   if (action === 'openGogs') {
     window.open('https://git.rosatomtech.ru/', '_blank')
