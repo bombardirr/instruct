@@ -147,24 +147,64 @@
             @apply [clip-path:var(--clip-path-code)];
         }
 
-        & .config {
-            @apply mt-3 p-4;
-            @apply bg-[var(--ag-gray-primary)];
-            @apply [clip-path:var(--clip-path-config)] shadow-md;
-            @apply overflow-x-auto;
 
-            pre {
-                @apply text-sm font-mono text-[var(--ag-white-primary)];
-                @apply whitespace-pre;
+        & .config {
+            @apply mt-3;
+            @apply bg-[var(--ag-gray-primary)];
+            @apply rounded-none;
+            @apply overflow-hidden;
+            @apply shadow-md;
+            @apply border border-[var(--ag-gray-light)];
+
+            & .config__header {
+                @apply flex items-center justify-between;
+                @apply px-3 py-2;
+                @apply bg-[var(--ag-black-primary)];
+                @apply border-b border-[var(--ag-gray-light)];
             }
 
-            & .config__list {
-                @apply mt-3 space-y-2;
-                @apply text-sm;
+            & .config__title {
+                @apply text-sm font-normal text-[var(--ag-white-primary)];
+                @apply normal-case;
+                @apply flex items-center gap-2;
+            }
 
-                li {
-                    @apply flex items-start gap-2;
+            & .config__title::before {
+                content: '📝';
+                @apply text-xs;
+            }
+
+            & .button {
+                @apply flex items-center gap-2;
+                @apply px-1 py-1;
+                @apply text-xs font-bold uppercase tracking-wider;
+                @apply cursor-pointer;
+
+                &.button--copy {
+                    @apply text-[var(--ag-green-primary)];
+                    @apply transition-all duration-150;
+                    @apply rounded-md;
+                    box-sizing: border-box;
+                    border: 1px solid transparent;
+                    border-bottom: 1px solid white;
+                    
+                    &:hover {
+                        animation: border-rotate 0.6s ease-in-out;
+                    }
                 }
+            }
+
+            pre {
+                @apply p-3;
+                @apply text-sm font-mono text-[var(--ag-white-primary)];
+                @apply whitespace-pre;
+                @apply m-0;
+                @apply bg-[var(--ag-gray-primary)];
+                @apply leading-normal;
+            }
+
+            code {
+                @apply text-[var(--ag-white-primary)];
             }
         }
     }

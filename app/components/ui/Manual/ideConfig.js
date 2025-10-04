@@ -127,11 +127,5 @@ api_url: "http://78.142.221.162:3000/api/booster",`,
         '3. После успешной проверки - деплой в прод'
       ]
     }
-  ],
-  advancedCommands: [
-    { command: 'git status', description: 'Проверить статус репозитория' },
-    { command: 'git branch -a', description: 'Показать все ветки' },
-    { command: 'git log --oneline -10', description: 'Последние 10 коммитов' },
-    { command: 'npm run serve', description: 'Запуск dev сервера' }
   ]
 }

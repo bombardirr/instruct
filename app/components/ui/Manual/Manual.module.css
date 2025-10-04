@@ -3,7 +3,7 @@
 .manual {
     @apply relative;
     @apply flex;
-    @apply w-full min-h-screen;
+    @apply w-full;
     @apply gap-2 p-6;
     @apply text-[var(--ag-white-primary)] font-mono;
 
@@ -79,11 +79,11 @@
                                 @apply font-medium text-[var(--ag-white-primary)];
                                 @apply opacity-0 transition-opacity duration-300;
                                 text-shadow: 0 0 4px #4a9eff,
-                                            0 0 8px #4a9eff,
-                                            0 0 12px #4a9eff,
-                                            0 0 16px #4a9eff,
-                                            0 0 24px #4a9eff,
-                                            0 0 32px #4a9eff;
+                                0 0 8px #4a9eff,
+                                0 0 12px #4a9eff,
+                                0 0 16px #4a9eff,
+                                0 0 24px #4a9eff,
+                                0 0 32px #4a9eff;
                                 animation: glow-pulse 0.8s ease-in-out infinite alternate;
                             }
                         }
@@ -98,8 +98,14 @@
                     @apply flex gap-2;
 
                     & .header__settings_item {
+                        @apply flex flex-col gap-1;
+
+                        label {
+                            @apply text-xs text-[var(--ag-gray-light)] uppercase tracking-wider font-medium;
+                        }
+
                         input {
-                            @apply px-3;
+                            @apply px-3 py-2;
                             @apply rounded;
                             @apply bg-[var(--ag-black-tertiary)];
                             @apply text-sm font-mono text-[var(--ag-white-primary)];
@@ -117,53 +123,6 @@
         & .content {
             @apply flex flex-wrap justify-center items-center gap-6;
             @apply mx-auto;
-        }
-
-
-        & .footer {
-            @apply mt-8 pt-6;
-            @apply border-t border-[var(--ag-gray-tertiary)];
-
-            & .footer__toggle {
-                @apply flex items-center gap-2;
-                @apply px-4 py-2;
-                @apply bg-[var(--ag-gray-primary)];
-                @apply text-sm font-bold text-[var(--ag-white-secondary)] uppercase tracking-wider;
-                @apply [clip-path:var(--clip-path-footer-toggle)] hover:bg-[var(--ag-gray-secondary)] hover:text-[var(--ag-white-primary)] transition-all duration-200;
-                @apply cursor-pointer;
-            }
-
-            & .footer__advanced {
-                @apply mt-4 p-4;
-                @apply bg-[var(--ag-gray-secondary)];
-                @apply border border-[var(--ag-gray-light)];
-                @apply [clip-path:var(--clip-path-footer-advanced)] shadow-md;
-
-                h4 {
-                    @apply mb-3;
-                    @apply font-bold text-[var(--ag-white-primary)] uppercase tracking-wider;
-                }
-
-                & .footer__advanced__list {
-                    @apply space-y-2;
-                }
-
-                & .footer__advanced__item {
-                    @apply flex items-center justify-between;
-                    @apply p-2;
-                    @apply bg-[var(--ag-gray-primary)];
-                    @apply border border-[var(--ag-gray-light)];
-                    @apply [clip-path:var(--clip-path-footer-item)];
-
-                    code {
-                        @apply text-xs font-mono text-[var(--ag-white-primary)];
-                    }
-
-                    span {
-                        @apply text-xs text-[var(--ag-gray-lighter)];
-                    }
-                }
-            }
         }
     }
 }

@@ -16,14 +16,42 @@ const menuItems = [
     id: 'ssh',
     icon: 'material-icon-theme:cds',
     text: 'SSH',
-    moreText: 'GIT',
+    moreText: '',
     moreIcon: 'line-md:uploading-loop'
   },
   {
     id: 'ide',
     icon: 'material-icon-theme:purescript',
     text: 'IDE',
-    moreText: 'REMOTE',
+    moreText: '',
+    moreIcon: 'line-md:uploading-loop'
+  },
+  {
+    id: 'git',
+    icon: 'simple-icons:git',
+    text: 'GIT',
+    moreText: '',
+    moreIcon: 'line-md:uploading-loop'
+  },
+  {
+    id: 'npm',
+    icon: 'simple-icons:npm',
+    text: 'NPM',
+    moreText: '',
+    moreIcon: 'line-md:uploading-loop'
+  },
+  {
+    id: 'vue',
+    icon: 'simple-icons:vuedotjs',
+    text: 'VUE',
+    moreText: '',
+    moreIcon: 'line-md:uploading-loop'
+  },
+  {
+    id: 'deploy',
+    icon: 'simple-icons:docker',
+    text: 'DEPLOY',
+    moreText: '',
     moreIcon: 'line-md:uploading-loop'
   }
 ]

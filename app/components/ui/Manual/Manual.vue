@@ -1,5 +1,5 @@
 <template>
-  <div :class="styles.manual">
+  <div :id="`${activeTab}-manual`" :class="styles.manual">
     <div :class="styles.manual__wrapper">
       <!-- Заголовок с табами -->
       <div :class="styles.header">
@@ -9,7 +9,7 @@
         </div>
 
         <!-- Настройки пользователя -->
-        <div :class="styles.header__settings">
+        <div v-if="shouldShowSettings" :class="styles.header__settings">
           <div :class="styles.header__settings_disclaimer">
             <p>
               <span>Чтобы финальный код подстроить под вас </span>
@@ -18,12 +18,13 @@
           </div>
           <div :class="styles.header__settings_items">
             <div
-                v-for="setting in config.settings"
+                v-for="setting in visibleSettings"
                 :key="setting.id"
                 :class="styles.header__settings_item"
             >
+              <label :for="`${config.id}-${setting.id}`">{{ setting.label }}</label>
               <input
-                  :id="setting.id"
+                  :id="`${config.id}-${setting.id}`"
                   v-model="settingsData[setting.id]"
                   :autocomplete="setting.autocomplete"
                   :placeholder="setting.placeholder"
@@ -39,41 +40,17 @@
         <ManualStep
             v-for="step in config.steps"
             :key="step.number"
-            :step="step"
             :active-tab="activeTab"
-            :settings-data="settingsData"
-            :is-animating="isAnimating"
             :animated-text="animatedText"
             :current-command="currentCommand"
+            :is-animating="isAnimating"
+            :settings-data="settingsData"
+            :step="step"
             @copy-command="copyCommand"
             @button-action="handleButtonAction"
         />
       </div>
 
-      <!-- Дополнительная информация -->
-      <div :class="styles.footer">
-        <button
-            :class="styles.footer__toggle"
-            @click="toggleDetails"
-        >
-          <Icon :name="showDetails ? 'material-symbols:expand-less' : 'material-symbols:expand-more'"/>
-          {{ showDetails ? 'СКРЫТЬ' : 'ПОКАЗАТЬ' }} ДОПОЛНИТЕЛЬНО
-        </button>
-
-        <div v-if="showDetails" :class="styles.footer__advanced">
-          <h4>ДОПОЛНИТЕЛЬНЫЕ КОМАНДЫ</h4>
-          <div :class="styles.footer__advanced__list">
-            <div
-                v-for="cmd in config.advancedCommands"
-                :key="cmd.command"
-                :class="styles.footer__advanced__item"
-            >
-              <code>{{ cmd.command }}</code>
-              <span>{{ cmd.description }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
     <div :class="styles.manual__sidebar">
       <!-- Табы -->
@@ -102,27 +79,107 @@ const props = defineProps({
   config: {
     type: Object,
     required: true
+  },
+  activeSidebarItem: {
+    type: String,
+    default: 'ssh'
   }
 })
 
-const showDetails = ref(false)
+console.log('Manual component config:', props.config)
+console.log('Steps:', props.config.steps)
+console.log('Active sidebar item:', props.activeSidebarItem)
+
+console.log('КОНФИГ', props.config)
+
+// Маппинг между сайдбаром и карточками
+const cardMapping = {
+  'ssh': 'ssh-setup',           // Настройка SSH
+  'ide': 'ide-setup',           // Удаленная разработка
+  'git': 'git-workflow',        // Работа с GIT
+  'npm': 'npm-package-manager', // Работа с NPM
+  'vue': 'vue-development',     // Разработка на Vue
+  'deploy': 'deployment'        // Деплой проекта
+}
+
+// Определяем должна ли текущая карточка показывать настройки
+const shouldShowSettings = computed(() => {
+  const expectedCardId = cardMapping[props.activeSidebarItem]
+  console.log('Manual shouldShowSettings check:', {
+    'activeSidebarItem': props.activeSidebarItem,
+    'expectedCardId': expectedCardId,
+    'currentCardId': props.config.id,
+    'shouldShow': props.config.id === expectedCardId
+  })
+  
+  // ВРЕМЕННО: показываем инпуты для всех карточек для тестирования
+  const shouldTestAll = true // Временно установлено в true для тестирования
+  
+  if (shouldTestAll) {
+    return true // Показываем инпуты для всех карточек
+  }
+  
+  return props.config.id === expectedCardId
+})
+
 const activeTab = ref(props.config.activeTab || props.config.tabs[0]?.id)
 
 // Реактивные данные настроек
 const settingsData = ref({})
-props.config.settings.forEach(setting => {
-  settingsData.value[setting.id] = setting.defaultValue || ''
+
+// Инициализируем настройки с учетом активной вкладки
+const initializeSettings = (config, activeTabValue) => {
+  const settings = {}
+  config.settings.forEach(setting => {
+    // Используем значение для активной вкладки, если есть defaultValueMap, иначе defaultValue
+    let defaultValue = setting.defaultValue || ''
+    if (setting.defaultValueMap && setting.defaultValueMap[activeTabValue]) {
+      defaultValue = setting.defaultValueMap[activeTabValue]
+    }
+    settings[setting.id] = defaultValue
+  })
+  settingsData.value = settings
+}
+
+// Фильтруем настройки для отображения только подходящих для активной вкладки
+// и только если эта карточка активна в сайдбаре
+const visibleSettings = computed(() => {
+  console.log('visibleSettings computed:', {
+    'shouldShowSettings': shouldShowSettings.value,
+    'currentTab': activeTab.value,
+    'settingsCount': props.config.settings?.length || 0
+  })
+  
+  if (!shouldShowSettings.value) {
+    console.log('Settings hidden for card:', props.config.id)
+    return []
+  }
+  
+  const filtered = props.config.settings.filter(setting => {
+    return !setting.visibleFor || setting.visibleFor.includes(activeTab.value)
+  })
+  console.log('Settings filtered for', props.config.id, ':', filtered.length, 'items')
+  return filtered
 })
+
+// Инициализируем настройки при создании компонента (всегда)
+initializeSettings(props.config, activeTab.value)
 
 // Обновляем activeTab при изменении конфигурации
 watch(() => props.config, (newConfig) => {
   activeTab.value = newConfig.activeTab || newConfig.tabs[0]?.id
-  // Обновляем настройки
-  settingsData.value = {}
-  newConfig.settings.forEach(setting => {
-    settingsData.value[setting.id] = setting.defaultValue || ''
-  })
+  initializeSettings(newConfig, activeTab.value)
 }, {immediate: true})
+
+// Обновляем настройки при смене активной вкладки (всегда)
+watch(activeTab, (newTabId) => {
+  initializeSettings(props.config, newTabId)
+})
+
+// Обновляем настройки при смене активной сайдбар карточки (всегда)
+watch(() => props.activeSidebarItem, (newSidebarItem) => {
+  initializeSettings(props.config, activeTab.value)
+})
 
 // Анимация копирования
 const isAnimating = ref(false)
@@ -193,9 +250,6 @@ const handleButtonAction = (action) => {
   }
 }
 
-const toggleDetails = () => {
-  showDetails.value = !showDetails.value
-}
 </script>
 
 <style>

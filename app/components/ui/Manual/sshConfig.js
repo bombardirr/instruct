@@ -126,10 +126,5 @@ export const sshConfig = {
                 'Затем выполните: <span class="code">git pull</span> и <span class="code">git push</span>'
             ]
         }
-    ],
-    advancedCommands: [
-        {command: 'ssh-add -l', description: 'Список загруженных ключей'},
-        {command: 'ssh-add ~/.ssh/id_rsa_tar', description: 'Добавить ключ в агент'},
-        {command: 'git remote -v', description: 'Проверить текущий remote'}
     ]
 }
