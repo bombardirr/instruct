@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 :root {
+    /* Dark theme (default) */
     --ag-black-primary: rgba(0, 0, 0, 1);
     --ag-black-secondary: rgba(10, 10, 10, 1);
     --ag-black-tertiary: rgba(17, 17, 17, 1);
@@ -10,10 +11,13 @@
     --ag-gray-light: rgba(74, 74, 74, 1);
     --ag-gray-lighter: rgba(106, 106, 106, 1);
     --ag-green-primary: rgba(5, 223, 114, 1);
-    --ag-green-lightыщьу: rgba(92, 197, 138, 1);
+    --ag-green-light: rgba(92, 197, 138, 1);
     --ag-white-primary: rgba(248, 248, 248, 1);
     --ag-white-secondary: rgba(232, 232, 232, 1);
     --ag-white-tertiary: rgba(216, 216, 216, 1);
+    
+    /* Theme toggle icon colors */
+    --ag-sun-icon-color: var(--ag-green-primary);
 
     /* Clip-path variables */
     --clip-path-home: polygon(20px 0, calc(100% - 20px) 0, 100% 20px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 20px 100%, 0 calc(100% - 20px), 0 20px);
@@ -31,6 +35,46 @@
     --clip-path-footer-advanced: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
     --clip-path-footer-item: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
     --clip-path-sidebar-item: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+
+/* Light theme variables */
+.light {
+    --ag-black-primary: rgba(255, 255, 255, 1);
+    --ag-black-secondary: rgba(245, 245, 245, 1);
+    --ag-black-tertiary: rgba(238, 238, 238, 1);
+    --ag-gray-primary: rgba(229, 229, 229, 1);
+    --ag-gray-secondary: rgba(213, 213, 213, 1);
+    --ag-gray-tertiary: rgba(197, 197, 197, 1);
+    --ag-gray-light: rgba(181, 181, 181, 1);
+    --ag-gray-lighter: rgba(149, 149, 149, 1);
+    --ag-green-primary: rgba(5, 150, 76, 1);
+    --ag-green-light: rgba(34, 197, 94, 1);
+    --ag-white-primary: rgba(7, 7, 7, 1);
+    --ag-white-secondary: rgba(23, 23, 23, 1);
+    --ag-white-tertiary: rgba(39, 39, 39, 1);
+    
+    /* Theme toggle icon colors */
+    --ag-sun-icon-color: var(--ag-green-primary);
+}
+
+/* Dim theme variables (intermediate) */
+.dim {
+    --ag-black-primary: rgba(20, 20, 20, 1);
+    --ag-black-secondary: rgba(30, 30, 30, 1);
+    --ag-black-tertiary: rgba(40, 40, 40, 1);
+    --ag-gray-primary: rgba(50, 50, 50, 1);
+    --ag-gray-secondary: rgba(60, 60, 60, 1);
+    --ag-gray-tertiary: rgba(70, 70, 70, 1);
+    --ag-gray-light: rgba(80, 80, 80, 1);
+    --ag-gray-lighter: rgba(100, 100, 100, 1);
+    --ag-green-primary: rgba(5, 180, 95, 1);
+    --ag-green-light: rgba(60, 200, 120, 1);
+    --ag-white-primary: rgba(220, 220, 220, 1);
+    --ag-white-secondary: rgba(200, 200, 200, 1);
+    --ag-white-tertiary: rgba(180, 180, 180, 1);
+    
+    /* Theme toggle icon colors */
+    --ag-sun-icon-color: var(--ag-green-light);
 }
 
 * {

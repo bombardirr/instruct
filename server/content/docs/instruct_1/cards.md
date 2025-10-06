@@ -2,7 +2,7 @@
 id: 'ssh-setup'
 title: 'НАСТРОЙКА SSH'
 menuId: 'SSH'
-menuIcon: 'material-icon-theme:cds'
+menuIcon: 'simple-icons:linux'
 menuText: 'SSH'
 subtitle: 'Безопасный доступ к репозиторию'
 order: 1

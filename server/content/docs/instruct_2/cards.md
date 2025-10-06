@@ -2,7 +2,7 @@
 id: 'ide-setup'
 title: 'УДАЛЕННАЯ РАЗРАБОТКА'
 menuId: 'IDE'
-menuIcon: 'material-icon-theme:purescript'
+menuIcon: 'simple-icons:visualstudiocode'
 menuText: 'IDE'
 subtitle: 'Настройка IDE для работы с проектом'
 order: 2

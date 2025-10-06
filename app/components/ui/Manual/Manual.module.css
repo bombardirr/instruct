@@ -10,18 +10,29 @@
     & .manual__sidebar {
         @apply flex flex-col;
         @apply w-fit;
-        @apply p-4 pr-0;
+        @apply overflow-visible;
 
         & .tabs__wrapper {
-            @apply sticky top-8;
+            @apply sticky top-54;
             @apply flex flex-col;
+
+            & .theme__wrapper {
+                @apply mb-4;
+                @apply flex justify-center;
+                @apply overflow-visible;
+            }
 
             & .tabs {
                 @apply relative z-10;
                 @apply flex flex-col gap-3;
 
+                & .tabContainer {
+                    @apply relative;
+                    @apply flex items-center;
+                }
+
                 & .tabs__item {
-                    @apply flex items-center gap-3;
+                    @apply flex items-center;
                     @apply w-fit;
                     @apply px-4 py-3;
                     @apply text-sm font-bold text-[var(--ag-gray-light)] hover:text-[var(--ag-green-light)] uppercase tracking-wider;
@@ -31,6 +42,7 @@
                         @apply text-[var(--ag-green-primary)];
                     }
                 }
+
             }
         }
     }

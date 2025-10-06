@@ -11,6 +11,12 @@ import {ScrollTrigger} from 'gsap/ScrollTrigger'
 // Регистрация плагинов GSAP
 gsap.registerPlugin(ScrollToPlugin, ScrollTrigger)
 
+// Инициализация темы при загрузке страницы
+const { initTheme } = useTheme()
+onMounted(() => {
+  initTheme()
+})
+
 const {data: cardsResponse} = await useFetch('/api/cards')
 const cards = cardsResponse.value?.data || []
 

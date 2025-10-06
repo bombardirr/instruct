@@ -55,16 +55,20 @@
     <div :class="styles.manual__sidebar">
       <!-- Табы -->
       <div :class="styles.tabs__wrapper">
+        <!-- Переключатель темы -->
+        <div :class="styles.theme__wrapper">
+          <ThemeToggle />
+        </div>
+        
         <div :class="styles.tabs">
-          <button
-              v-for="tab in config.tabs"
-              :key="tab.id"
-              :class="[styles.tabs__item, { [styles['tabs__item--active']]: activeTab === tab.id }]"
-              @click="setActiveTab(tab.id)"
-          >
-            <Icon :name="tab.icon"/>
-            <!--            {{ tab.label }}-->
-          </button>
+          <div :class="styles.tabContainer" v-for="tab in config.tabs" :key="tab.id">
+            <button
+                :class="[styles.tabs__item, { [styles['tabs__item--active']]: activeTab === tab.id }]"
+                @click="setActiveTab(tab.id)"
+            >
+              <Icon :name="tab.icon"/>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -74,6 +78,7 @@
 <script setup>
 import styles from './Manual.module.css'
 import ManualStep from './ManualStep.vue'
+import ThemeToggle from '~/components/ui/ThemeToggle/ThemeToggle.vue'
 
 const props = defineProps({
   config: {

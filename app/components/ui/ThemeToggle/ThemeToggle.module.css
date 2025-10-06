@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+.themeToggleContainer {
+    @apply relative;
+    @apply flex items-center;
+}
+
+.themeToggle {
+    @apply flex items-center;
+    @apply w-fit;
+    @apply text-sm font-bold text-[var(--ag-gray-light)] hover:text-[var(--ag-green-light)] uppercase tracking-wider;
+    @apply cursor-pointer;
+    @apply transition-all duration-300;
+
+    & .themeToggle__sunIcon {
+        @apply w-6 h-6;
+        @apply transition-all duration-500;
+        @apply fill-current;
+        @apply flex items-center justify-center;
+        
+        /* Цвет иконки в зависимости от темы */
+        color: var(--ag-sun-icon-color);
+        
+        /* Принудительное переопределение цветов SVG */
+        svg {
+            @apply fill-current;
+            color: var(--ag-sun-icon-color);
+        }
+        
+        /* Для иконок Iconify */
+        .iconify {
+            color: var(--ag-sun-icon-color);
+        }
+    }
+
+    /* Анимация вращения при переключении */
+    &:active .themeToggle__sunIcon {
+        animation: spring-rotate 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+    
+    /* После завершения анимации клика возвращаемся к медленному вращению */
+    &:not(:active) .themeToggle__sunIcon {
+        animation: slow-rotate 32s linear infinite;
+    }
+
+}
+
+/* Пружинящая анимация вращения */
+@keyframes spring-rotate {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    25% {
+        transform: rotate(90deg) scale(1.1);
+    }
+    50% {
+        transform: rotate(180deg) scale(0.95);
+    }
+    75% {
+        transform: rotate(270deg) scale(1.05);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+/* Медленное постоянное вращение */
+@keyframes slow-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
