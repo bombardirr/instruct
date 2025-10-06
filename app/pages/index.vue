@@ -40,17 +40,14 @@ const visibleCard = computed(() => {
 
 // GSAP функция плавного скролла
 const smoothScrollToCard = (cardId) => {
-  const contentContainer = document.querySelector('div[class*="home__content"]')
-  if (!contentContainer) return
-
   const cardElement = document.querySelector(`[data-card-id="${cardId}"]`)
   if (!cardElement) return
 
   // Устанавливаем флаг программного скролла
   isScrollingProgrammatically.value = true
 
-  // Используем GSAP ScrollToPlugin для плавного скролла
-  gsap.to(contentContainer, {
+  // Используем GSAP ScrollToPlugin для плавного скролла с window
+  gsap.to(window, {
     duration: 1.2,
     ease: "power2.out",
     scrollTo: {
@@ -94,9 +91,7 @@ let scrollTriggers = []
 // Создаем ScrollTrigger для каждой карточки
 onMounted(() => {
   const tryCreateScrollTriggers = (attempt = 1, maxAttempts = 5) => {
-    const contentContainer = document.querySelector('div[class*="home__content"]')
-
-    if (contentContainer && cards.length > 0) {
+    if (cards.length > 0) {
       // Создаем ScrollTrigger для каждой карточки
       cards.forEach((card, index) => {
         const triggerSelector = `[data-card-id="${card.id}"] h1`
@@ -110,7 +105,7 @@ onMounted(() => {
             trigger: headerElement,
             start: isFirstCard ? "top top" : "top 60%", // Первая карточка активируется в самом верху
             end: isFirstCard ? "bottom top" : "bottom 40%", // Разные зоны для разных карточек
-            scroller: contentContainer,
+            // Убираем scroller - используем window по умолчанию
 
             onEnter: () => {
               // При входе в зону активируем соответствующий элемент сайдбара
@@ -150,8 +145,7 @@ onMounted(() => {
       setTimeout(() => {
         if (scrollTriggers.length > 0 && activeComponent.value === 'ssh') {
           // Проверяем если мы в самом верху - активируем SSH
-          const firstTrigger = scrollTriggers[0]
-          const scrollPosition = firstTrigger.scroll()
+          const scrollPosition = window.pageYOffset || document.documentElement.scrollTop
 
           if (scrollPosition <= 50) { // Если скролл в позиции менее 50px - мы вверху страницы
             activeComponent.value = 'ssh'
