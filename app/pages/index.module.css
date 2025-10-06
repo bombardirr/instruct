@@ -3,16 +3,12 @@
 .home {
     @apply relative;
     @apply flex justify-between items-start gap-12;
-    @apply flex-1 h-screen;
     @apply bg-[var(--ag-black-primary)];
-    @apply [clip-path:var(--clip-path-home)];
 
     & .home__content {
         @apply w-full h-full;
         @apply ml-[300px];
         @apply bg-[var(--ag-black-secondary)];
-        @apply overflow-y-auto;
         @apply scroll-smooth;
-        @apply overflow-x-hidden;
     }
 }
