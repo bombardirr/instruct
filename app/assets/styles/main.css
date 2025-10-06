@@ -47,6 +47,12 @@ html, body {
    SCROLLBAR STYLES
    ========================================================================== */
 
+/* Global scrollbar styles - matching card scrollbar design */
+html, body {
+    scrollbar-width: thin;
+    scrollbar-color: var(--ag-green-primary) color-mix(in srgb, var(--ag-gray-primary) 20%, transparent);
+}
+
 /* Webkit browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
     width: 8px;
@@ -54,44 +60,26 @@ html, body {
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--ag-black-secondary);
+    background: var(--ag-gray-primary);
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--ag-gray-tertiary);
+    background: var(--ag-green-primary);
     border-radius: 4px;
-    transition: background 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--ag-gray-light);
-}
-
-::-webkit-scrollbar-thumb:active {
-    background: var(--ag-green-primary);
+    background: var(--ag-green-light);
 }
 
 ::-webkit-scrollbar-corner {
-    background: var(--ag-black-secondary);
+    background: var(--ag-gray-primary);
 }
 
 /* Firefox */
 * {
     scrollbar-width: thin;
-    scrollbar-color: var(--ag-gray-tertiary) var(--ag-black-secondary);
-}
-
-/* Custom scrollbar for specific elements */
-.custom-scrollbar {
-    scrollbar-width: thin;
-    scrollbar-color: var(--ag-green-primary) var(--ag-gray-primary);
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-    background: var(--ag-green-primary);
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: var(--ag-green-light);
+    scrollbar-color: var(--ag-green-primary) color-mix(in srgb, var(--ag-gray-primary) 20%, transparent);
 }

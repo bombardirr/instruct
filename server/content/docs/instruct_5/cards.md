@@ -1,6 +1,9 @@
 ---
 id: 'vue-development'
 title: 'РАЗРАБОТКА НА VUE'
+menuId: 'VUE'
+menuIcon: 'simple-icons:vuedotjs'
+menuText: 'VUE'
 subtitle: 'Основы работы с Vue.js фреймворком'
 order: 5
 icon: 'simple-icons:vuedotjs'

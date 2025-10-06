@@ -1,6 +1,9 @@
 ---
 id: 'npm-package-manager'
 title: 'РАБОТА С NPM'
+menuId: 'NPM'
+menuIcon: 'simple-icons:npm'
+menuText: 'NPM'
 subtitle: 'Управление зависимостями и скриптами проекта'
 order: 4
 icon: 'simple-icons:npm'

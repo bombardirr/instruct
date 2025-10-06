@@ -74,17 +74,6 @@ const handleSidebarClick = (item) => {
   }, 150)
 }
 
-const handleMoreClick = (item) => {
-  activeComponent.value = item.id
-
-  const targetCardId = cardMapping[item.id]
-
-  // Используем GSAP для скролла
-  setTimeout(() => {
-    smoothScrollToCard(targetCardId)
-  }, 150)
-}
-
 // ScrollTrigger для детекции видимости карточек
 let scrollTriggers = []
 
@@ -207,7 +196,7 @@ onUnmounted(() => {
 
 <template>
   <div :class="styles.home">
-    <Sidebar :active-item="activeComponent" @item-click="handleSidebarClick" @more-click="handleMoreClick"/>
+    <Sidebar :active-item="activeComponent" :cards="cards" @item-click="handleSidebarClick"/>
     <div :class="styles.home__content">
       <div v-if="cards.length === 0" class="loading">Загрузка карточек...</div>
       <Manual

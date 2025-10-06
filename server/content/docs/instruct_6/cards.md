@@ -1,6 +1,9 @@
 ---
 id: 'deployment'
 title: 'ДЕПЛОЙ ПРОЕКТА'
+menuId: 'DEPLOY'
+menuIcon: 'simple-icons:docker'
+menuText: 'DEPLOY'
 subtitle: 'Развертывание приложения в продакшн'
 order: 6
 icon: 'simple-icons:docker'

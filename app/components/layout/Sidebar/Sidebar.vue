@@ -6,64 +6,42 @@ const props = defineProps({
   activeItem: {
     type: String,
     default: 'ssh'
+  },
+  cards: {
+    type: Array,
+    default: () => []
   }
 })
 
-const emit = defineEmits(['item-click', 'more-click'])
+const emit = defineEmits(['item-click'])
 
-const menuItems = [
-  {
-    id: 'ssh',
-    icon: 'material-icon-theme:cds',
-    text: 'SSH',
-    moreText: '',
-    moreIcon: 'line-md:uploading-loop'
-  },
-  {
-    id: 'ide',
-    icon: 'material-icon-theme:purescript',
-    text: 'IDE',
-    moreText: '',
-    moreIcon: 'line-md:uploading-loop'
-  },
-  {
-    id: 'git',
-    icon: 'simple-icons:git',
-    text: 'GIT',
-    moreText: '',
-    moreIcon: 'line-md:uploading-loop'
-  },
-  {
-    id: 'npm',
-    icon: 'simple-icons:npm',
-    text: 'NPM',
-    moreText: '',
-    moreIcon: 'line-md:uploading-loop'
-  },
-  {
-    id: 'vue',
-    icon: 'simple-icons:vuedotjs',
-    text: 'VUE',
-    moreText: '',
-    moreIcon: 'line-md:uploading-loop'
-  },
-  {
-    id: 'deploy',
-    icon: 'simple-icons:docker',
-    text: 'DEPLOY',
-    moreText: '',
-    moreIcon: 'line-md:uploading-loop'
-  }
-]
+// Маппинг между сайдбаром и карточками
+const cardMapping = {
+  'ssh': 'ssh-setup',           // Настройка SSH
+  'ide': 'ide-setup',           // Удаленная разработка
+  'git': 'git-workflow',        // Работа с GIT
+  'npm': 'npm-package-manager', // Работа с NPM
+  'vue': 'vue-development',     // Разработка на Vue
+  'deploy': 'deployment'        // Деплой проекта
+}
+
+// Создаем динамический массив menuItems на основе данных карточек
+const menuItems = computed(() => {
+  return Object.keys(cardMapping).map(sidebarId => {
+    const cardId = cardMapping[sidebarId]
+    const card = props.cards.find(card => card.id === cardId)
+    
+    return {
+      id: sidebarId,
+      icon: card?.menuIcon || card?.icon || 'material-icon-theme:cds',
+      text: card?.menuText || card?.menuId || sidebarId.toUpperCase()
+    }
+  })
+})
 
 const handleItemClick = (item) => {
   console.log('Clicked item:', item)
   emit('item-click', item)
-}
-
-const handleMoreClick = (item) => {
-  console.log('Clicked more for item:', item)
-  emit('more-click', item)
 }
 </script>
 
@@ -76,11 +54,8 @@ const handleMoreClick = (item) => {
             :key="item.id"
             :icon="item.icon"
             :is-active="props.activeItem === item.id"
-            :more-icon="item.moreIcon"
-            :more-text="item.moreText"
             :text="item.text"
             @click="handleItemClick(item)"
-            @more-click="handleMoreClick(item)"
         />
       </div>
     </div>

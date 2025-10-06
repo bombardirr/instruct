@@ -1,6 +1,9 @@
 ---
 id: 'git-workflow'
 title: 'РАБОТА С GIT'
+menuId: 'GIT'
+menuIcon: 'simple-icons:git'
+menuText: 'GIT'
 subtitle: 'Основы работы с системой контроля версий'
 order: 3
 icon: 'simple-icons:git'
