@@ -68,11 +68,11 @@
     }
 
     /*&:hover .step__body {*/
-    /*    @apply filter blur-[0px];*/
+    /*    @apply filter blur-[0px] opacity-100;*/
     /*}*/
 
     /*& .step__body {*/
-    /*    @apply filter blur-[2px] transition-all duration-300;*/
+    /*    @apply filter blur-[2px]  opacity-40 transition-all duration-300;*/
     /*}*/
 
     & .step__body {

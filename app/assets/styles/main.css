@@ -57,26 +57,6 @@
     --ag-sun-icon-color: var(--ag-green-primary);
 }
 
-/* Dim theme variables (intermediate) */
-.dim {
-    --ag-black-primary: rgba(20, 20, 20, 1);
-    --ag-black-secondary: rgba(30, 30, 30, 1);
-    --ag-black-tertiary: rgba(40, 40, 40, 1);
-    --ag-gray-primary: rgba(50, 50, 50, 1);
-    --ag-gray-secondary: rgba(60, 60, 60, 1);
-    --ag-gray-tertiary: rgba(70, 70, 70, 1);
-    --ag-gray-light: rgba(80, 80, 80, 1);
-    --ag-gray-lighter: rgba(100, 100, 100, 1);
-    --ag-green-primary: rgba(5, 180, 95, 1);
-    --ag-green-light: rgba(60, 200, 120, 1);
-    --ag-white-primary: rgba(220, 220, 220, 1);
-    --ag-white-secondary: rgba(200, 200, 200, 1);
-    --ag-white-tertiary: rgba(180, 180, 180, 1);
-    
-    /* Theme toggle icon colors */
-    --ag-sun-icon-color: var(--ag-green-light);
-}
-
 * {
     @apply box-border;
 }

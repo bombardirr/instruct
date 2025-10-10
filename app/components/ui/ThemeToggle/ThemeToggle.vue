@@ -1,13 +1,13 @@
 <template>
   <div :class="styles.themeToggleContainer">
     <button
-      @click="handleToggle"
-      :class="styles.themeToggle"
-      :title="`Переключить на ${nextThemeName}`"
+        :class="styles.themeToggle"
+        :title="`Переключить на ${nextThemeName}`"
+        @click="handleToggle"
     >
-      <Icon 
-        name="material-symbols:sunny" 
-        :class="styles.themeToggle__sunIcon"
+      <Icon
+          :class="styles.themeToggle__sunIcon"
+          name="material-symbols:sunny"
       />
     </button>
   </div>
@@ -16,11 +16,9 @@
 <script setup>
 import styles from './ThemeToggle.module.css'
 
-const { isDark, isLight, isDim, themeName, nextThemeName, toggleTheme } = useTheme()
+const {nextThemeName, toggleTheme} = useTheme()
 
 const handleToggle = () => {
-  console.log('Theme toggle clicked, current theme:', themeName.value)
   toggleTheme()
-  console.log('Theme after toggle:', themeName.value)
 }
 </script>

@@ -6,7 +6,7 @@
 
 <script setup>
 // Применяем тему сразу при загрузке страницы
-if (process.client) {
+if (import.meta.client) {
   const savedTheme = localStorage.getItem('theme') || 'dark'
   document.documentElement.classList.add(savedTheme)
 }

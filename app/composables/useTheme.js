@@ -1,13 +1,17 @@
 export const useTheme = () => {
-  // Глобальное состояние темы
+  // Глобальное состояние темы с гарантией не-null значения
   const globalTheme = useState('theme', () => 'dark')
+  
+  // Вспомогательная функция для получения текущей темы
+  const getCurrentTheme = () => {
+    return globalTheme.value || 'dark'
+  }
   
   // Инициализация темы из localStorage или дефолтная темная тема
   const initTheme = () => {
-    if (process.client) {
+    if (import.meta.client) {
       const savedTheme = localStorage.getItem('theme')
       
-      console.log('Initializing theme:', { savedTheme, defaultTheme: 'dark' })
       globalTheme.value = savedTheme || 'dark'
       applyTheme(globalTheme.value)
     }
@@ -15,67 +19,56 @@ export const useTheme = () => {
   
   // Применение темы к документу
   const applyTheme = (newTheme) => {
-    if (process.client) {
+    if (import.meta.client) {
       const html = document.documentElement
-      console.log('Applying theme:', newTheme)
       
       // Убираем все классы тем
-      html.classList.remove('dark', 'light', 'dim')
+      html.classList.remove('dark', 'light')
       
       // Добавляем нужный класс
       html.classList.add(newTheme)
       
       localStorage.setItem('theme', newTheme)
-      console.log('HTML classes after theme change:', html.className)
     }
   }
   
-  // Переключение темы по циклу: dark -> dim -> light -> dark
+  // Переключение темы по циклу: dark -> light -> dark
   const toggleTheme = () => {
-    const themeCycle = ['dark', 'dim', 'light']
-    const currentIndex = themeCycle.indexOf(globalTheme.value)
+    const currentTheme = getCurrentTheme()
+    const themeCycle = ['dark', 'light']
+    const currentIndex = themeCycle.indexOf(currentTheme)
     const nextIndex = (currentIndex + 1) % themeCycle.length
     const newTheme = themeCycle[nextIndex]
     
-    console.log('Toggling theme from', globalTheme.value, 'to', newTheme)
     globalTheme.value = newTheme
     applyTheme(newTheme)
   }
   
-  // Установка конкретной темы
-  const setTheme = (newTheme) => {
-    if (['dark', 'light', 'dim'].includes(newTheme)) {
-      globalTheme.value = newTheme
-      applyTheme(newTheme)
-    }
-  }
-  
   // Реактивные свойства для проверки текущей темы
-  const isDark = computed(() => globalTheme.value === 'dark')
-  const isLight = computed(() => globalTheme.value === 'light')
-  const isDim = computed(() => globalTheme.value === 'dim')
+  const isDark = computed(() => getCurrentTheme() === 'dark')
+  const isLight = computed(() => getCurrentTheme() === 'light')
   
   // Получение названия темы для отображения
   const themeName = computed(() => {
-    switch (globalTheme.value) {
+    const currentTheme = getCurrentTheme()
+    switch (currentTheme) {
       case 'dark': return 'DARK'
       case 'light': return 'LIGHT'
-      case 'dim': return 'DIMMED'
       default: return 'DARK'
     }
   })
   
   // Получение следующей темы для подсказки
   const nextThemeName = computed(() => {
-    const themeCycle = ['dark', 'dim', 'light']
-    const currentIndex = themeCycle.indexOf(globalTheme.value)
+    const currentTheme = getCurrentTheme()
+    const themeCycle = ['dark', 'light']
+    const currentIndex = themeCycle.indexOf(currentTheme)
     const nextIndex = (currentIndex + 1) % themeCycle.length
     const nextTheme = themeCycle[nextIndex]
     
     switch (nextTheme) {
       case 'dark': return 'DARK'
       case 'light': return 'LIGHT'
-      case 'dim': return 'DIMMED'
       default: return 'DARK'
     }
   })
@@ -84,11 +77,9 @@ export const useTheme = () => {
     theme: readonly(globalTheme),
     isDark,
     isLight,
-    isDim,
     themeName,
     nextThemeName,
     toggleTheme,
-    setTheme,
     initTheme
   }
 }
